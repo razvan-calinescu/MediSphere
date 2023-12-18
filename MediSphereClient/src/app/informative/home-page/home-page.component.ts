@@ -7,6 +7,13 @@ interface Stats {
   awardCount: number;
 }
 
+export interface Tile {
+  photo: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -18,6 +25,7 @@ export class HomePageComponent implements OnInit, Stats {
   public departmentCount = 0;
   public laboratoryCount = 0;
   public awardCount = 0;
+  public faqPanelOpenState = false;
 
   ngOnInit() {
     this.animateValue('doctorCount', 45, 2000);
@@ -40,5 +48,14 @@ export class HomePageComponent implements OnInit, Stats {
       }
     }, stepTime);
   }
+
+  tiles: Tile[] = [
+    {text: 'One', cols: 3, rows: 1, photo: 'assets/pictures/4.jpg'},
+    {text: 'Two', cols: 1, rows: 2, photo: 'assets/pictures/3.jpg'},
+    {text: 'Three', cols: 1, rows: 1, photo: 'assets/pictures/2.jpg'},
+    {text: 'Four', cols: 2, rows: 1, photo: 'assets/pictures/1.jpg'},
+  ];
+
+  
   
 }

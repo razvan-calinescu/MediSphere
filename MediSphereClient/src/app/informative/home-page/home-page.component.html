@@ -53,13 +53,79 @@
 
     <div class="sectionTitle">
         <h1>Frequently Asked Questions (FAQ)</h1>
-        <p>The answers to the questions our customers commonly Ask</p>
+        <p>The answers to the questions our customers commonly ask</p>
     </div>
 
 
 
     <div class="faqContainer">
+        <mat-card>
+          <mat-accordion>
+            <mat-expansion-panel (opened)="faqPanelOpenState = true"
+                                 (closed)="faqPanelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>help_outline</mat-icon> 
+                  Do I need an appointment to use MediSphere services?
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Yes, an appointment is required for using our services. Please proceed to scheduling an appointment online, by phone or in person at our front desk.</p>
+            </mat-expansion-panel>
+  
+            <mat-expansion-panel (opened)="faqPanelOpenState = true"
+                                 (closed)="faqPanelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>help_outline</mat-icon> 
+                  How long does it take to receive test results?
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Basic test results will be available online, in MyMediSphere platform, on the sampling day, after 14:00. However, some more complex tests can take longer to be finished. In this case you'll be announced by our staff.</p>
+            </mat-expansion-panel>
 
+              <mat-expansion-panel (opened)="faqPanelOpenState = true"
+                                 (closed)="faqPanelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>help_outline</mat-icon> 
+                  Are you a partner of CNAS for price deduction?
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Yes. We collaborate with CNAS and any procedure done in our hospital is subject to price deduction, depending on the available sum</p>
+            </mat-expansion-panel>
+            
+            
+              <mat-expansion-panel (opened)="faqPanelOpenState = true"
+                                 (closed)="faqPanelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>help_outline</mat-icon> 
+                  Do you provide emergency services?
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Yes. Our hospital provides emergency services, disposing of a 24/7 Trauma Center and a fleet of new generation fully-equipped ambulances</p>
+            </mat-expansion-panel>
+
+
+          </mat-accordion>
+        </mat-card> 
+      </div>
+
+      <div class="sectionTitlePhotos">
+        <h1>Gallery</h1>
+        <p>Some pictures of our day to day activity</p>
     </div>
+
+    <div class="galleryContainer">
+        <mat-grid-list cols="4" rowHeight="200px">
+              <mat-grid-tile *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background-image]="'url(' + tile.photo + ')'"></mat-grid-tile>
+
+          </mat-grid-list>
+          
+    </div>
+      
 
 </div>

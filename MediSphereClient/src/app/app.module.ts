@@ -17,6 +17,8 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card'
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {MatCardModule} from '@angular/material/card'
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
