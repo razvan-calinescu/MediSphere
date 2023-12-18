@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('../assets/fonts/Raleway-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+.page{
+    font-family: 'Raleway', sans-serif;
+}
+
+.content{
+    padding-top: 4.8em;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}

@@ -1,6 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+:root {
+  --main-red-color: #ED1703;
+  --main-white-color: #fff;
+  --main-black-color: #000;
+  --nav-bg-color: #fff;
+  --nav-text-color: #ED1703;
+  --nav-upper-text-color: #000;
+  --primary-color: #5b8bf7; /* Hexadecimal */
+  --secondary-color: rgb(255, 199, 44); /* RGB */
+  --accent-color: rgba(255, 75, 75, 0.8); /* RGBA with alpha channel for transparency */
+  --background-color: hsl(210, 50%, 98%); /* HSL */
+  --text-color: hsl(210, 10%, 20%); /* HSL */
+}
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@media (max-width: 768px) {
+    .content {
+      padding: 0.5rem;
+    }
+  
+    /* Adjust top bar and footer sizing and layout for mobile devices */
+  }
+  
+
+
+/* Top Bar and Footer */
+nav, footer {
+    width: 100%;
+  }
+  
+  /* Content Area */
+  .content {
+    min-height: calc(100vh - var(--top-bar-height) - var(--footer-height));
+    padding: 1rem;
+  }
+  
+  /* You can define variables for common measurements */
+  :root {
+    --top-bar-height: 3rem;
+    --footer-height: 2rem;
+  }
+  
