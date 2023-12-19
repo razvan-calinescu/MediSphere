@@ -1,0 +1,131 @@
+<div class="container">
+
+    <img class="image" src="../../../assets/pictures/homepage_bg.jpg">
+
+    <div class="cardsContainer">
+        <mat-card class="redCard">
+         <h1>Why MediSphere?</h1>
+         <p>MediSphere is a medical center that operates at the highest standard, with doctors recognized for the quality of medical care, out of respect and concern for people.</p>
+        </mat-card>
+
+        <mat-card class="basicCard">
+            <mat-icon aria-hidden="false" aria-label="Icon label">history</mat-icon>
+            <h1>History</h1>
+            <p>MediSphere was founded two decades ago with the desire to offer quality medical services accessible to everyone.</p>
+        </mat-card>
+
+        <mat-card class="basicCard">
+            <mat-icon aria-hidden="false" aria-label="Icon label">done</mat-icon>
+            <h1>Values</h1>
+            <p>At MediSphere, we prioritize the needs of our patients and strive to continuously improve their experience within our clinic.</p>
+        </mat-card>
+
+        <mat-card class="basicCard">
+            <mat-icon aria-hidden="false" aria-label="Icon label">open_with</mat-icon>
+            <h1>Future</h1>
+            <p>We are constantly working to expand the range of services offered in order to support an ever-growing number of patients.</p>
+        </mat-card>
+    </div>
+
+    <div class="statsContainer">
+        <mat-card>
+            <mat-icon aria-hidden="false" aria-label="Icon label">medical_services</mat-icon>
+            <h1>{{doctorCount}}</h1>
+            <p>Doctors</p>
+        </mat-card>
+        <mat-card>
+            <mat-icon aria-hidden="false" aria-label="Icon label">emergency</mat-icon>
+            <h1>{{departmentCount}}</h1>
+            <p>Departments</p>
+        </mat-card>
+        <mat-card>
+            <mat-icon aria-hidden="false" aria-label="Icon label">science</mat-icon>
+            <h1>{{laboratoryCount}}</h1>
+            <p>Laboratories</p>
+        </mat-card>
+        <mat-card>
+            <mat-icon aria-hidden="false" aria-label="Icon label">emoji_events</mat-icon>
+            <h1>{{awardCount}}</h1>
+            <p>Awards</p>
+        </mat-card>
+    </div>
+
+
+    <div class="sectionTitle">
+        <h1>Frequently Asked Questions (FAQ)</h1>
+        <p>The answers to the questions our customers commonly ask</p>
+    </div>
+
+
+
+    <div class="faqContainer">
+        <mat-card>
+          <mat-accordion>
+            <mat-expansion-panel (opened)="faqPanelOpenState = true"
+                                 (closed)="faqPanelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>help_outline</mat-icon> 
+                  Do I need an appointment to use MediSphere services?
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Yes, an appointment is required for using our services. Please proceed to scheduling an appointment online, by phone or in person at our front desk.</p>
+            </mat-expansion-panel>
+  
+            <mat-expansion-panel (opened)="faqPanelOpenState = true"
+                                 (closed)="faqPanelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>help_outline</mat-icon> 
+                  How long does it take to receive test results?
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Basic test results will be available online, in MyMediSphere platform, on the sampling day, after 14:00. However, some more complex tests can take longer to be finished. In this case you'll be announced by our staff.</p>
+            </mat-expansion-panel>
+
+              <mat-expansion-panel (opened)="faqPanelOpenState = true"
+                                 (closed)="faqPanelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>help_outline</mat-icon> 
+                  Are you a partner of CNAS for price deduction?
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Yes. We collaborate with CNAS and any procedure done in our hospital is subject to price deduction, depending on the available sum</p>
+            </mat-expansion-panel>
+            
+            
+              <mat-expansion-panel (opened)="faqPanelOpenState = true"
+                                 (closed)="faqPanelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>help_outline</mat-icon> 
+                  Do you provide emergency services?
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Yes. Our hospital provides emergency services, disposing of a 24/7 Trauma Center and a fleet of new generation fully-equipped ambulances</p>
+            </mat-expansion-panel>
+
+
+          </mat-accordion>
+        </mat-card> 
+      </div>
+
+      <div class="sectionTitlePhotos">
+        <h1>Gallery</h1>
+        <p>Some pictures of our day to day activity</p>
+    </div>
+
+    <div class="galleryContainer">
+        <mat-grid-list cols="4" rowHeight="200px">
+              <mat-grid-tile *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background-image]="'url(' + tile.photo + ')'"></mat-grid-tile>
+
+          </mat-grid-list>
+          
+    </div>
+      
+
+</div>

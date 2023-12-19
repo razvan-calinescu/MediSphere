@@ -1,0 +1,79 @@
+
+// Assuming $horizontalPadding is the same as the navbar's horizontal padding
+$horizontalPadding: 21rem; // Adjust this value to match your navbar's horizontal padding
+
+.footer {
+  background-color: #f5f5f5;
+  color: #636363;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem $horizontalPadding; // Apply horizontal padding to match the navbar
+  position: static; // Default position, it will flow in the normal document layout
+  width: 100%; // Take full width of the container
+  box-sizing: border-box; // Include padding in the width calculation
+  
+  @media (min-width: 992px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    // No need to set padding-left and padding-right again if they are the same as the outside padding
+  }
+  
+    .footer-logo {
+      // Adjustments if you have a logo in the footer
+      margin-bottom: 1rem;
+      @media (min-width: 992px) {
+        margin-bottom: 0;
+        margin-right: 1rem;
+        flex: 0 0 auto; // Logo width will be based on content size
+      }
+    }
+  
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+  
+      @media (min-width: 992px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: auto;
+        flex: 1 1 auto; // Footer content will expand and contract as needed
+      }
+  
+      .footer-column {
+        // Styling for individual columns in the footer
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+  
+        @media (min-width: 992px) {
+          align-items: flex-start;
+          margin-bottom: 0;
+          margin-right: 2rem;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  
+    .footer-bottom {
+      // Styling for the bottom row or text in the footer
+      order: 3;
+      width: 100%;
+      margin-top: 1rem;
+  
+      @media (min-width: 992px) {
+        order: 0;
+        margin-top: 0;
+        flex: 0 0 auto; // Ensures it doesn't grow or shrink
+      }
+    }
+  }
+  
