@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "eIOkeLATEL/d7qIWU3rhU/X+uFADQ4z0y81/9QPsaPcn6+Y2q3i2a01oFw3NU3PLqQ3XBwNbSLjh00IJm6lUog==",
+  "success": true,
+  "projectFilePath": "C:\\repos\\MediSphere\\MediSphere.API\\MediSphere.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\razva\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\razva\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\razva\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\razva\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\razva\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\razva\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

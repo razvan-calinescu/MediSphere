@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "hMnfnTCCqL4Dnk1HUtsDwuHL4at+rqaHhIV2ctBXako=",
+  "Source": "MediSphere.API",
+  "BasePath": "_content/MediSphere.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

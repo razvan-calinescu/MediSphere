@@ -1,0 +1,12 @@
+C:\repos\MediSphere\MediSphere.DAL\bin\Debug\net6.0\MediSphere.DAL.deps.json
+C:\repos\MediSphere\MediSphere.DAL\bin\Debug\net6.0\MediSphere.DAL.dll
+C:\repos\MediSphere\MediSphere.DAL\bin\Debug\net6.0\MediSphere.DAL.pdb
+C:\repos\MediSphere\MediSphere.DAL\obj\Debug\net6.0\MediSphere.DAL.csproj.AssemblyReference.cache
+C:\repos\MediSphere\MediSphere.DAL\obj\Debug\net6.0\MediSphere.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\repos\MediSphere\MediSphere.DAL\obj\Debug\net6.0\MediSphere.DAL.AssemblyInfoInputs.cache
+C:\repos\MediSphere\MediSphere.DAL\obj\Debug\net6.0\MediSphere.DAL.AssemblyInfo.cs
+C:\repos\MediSphere\MediSphere.DAL\obj\Debug\net6.0\MediSphere.DAL.csproj.CoreCompileInputs.cache
+C:\repos\MediSphere\MediSphere.DAL\obj\Debug\net6.0\MediSphere.DAL.dll
+C:\repos\MediSphere\MediSphere.DAL\obj\Debug\net6.0\refint\MediSphere.DAL.dll
+C:\repos\MediSphere\MediSphere.DAL\obj\Debug\net6.0\MediSphere.DAL.pdb
+C:\repos\MediSphere\MediSphere.DAL\obj\Debug\net6.0\ref\MediSphere.DAL.dll

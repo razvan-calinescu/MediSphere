@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MediSphere.BLL/1.0.0": {
+        "dependencies": {
+          "MediSphere.DAL": "1.0.0"
+        },
+        "runtime": {
+          "MediSphere.BLL.dll": {}
+        }
+      },
+      "MediSphere.DAL/1.0.0": {
+        "runtime": {
+          "MediSphere.DAL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MediSphere.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MediSphere.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
