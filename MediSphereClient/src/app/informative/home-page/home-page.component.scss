@@ -26,7 +26,7 @@
             margin-bottom: .5em;
             font-weight: 400;
             font-size: 1em;
-            color: #3f3d3d;
+            color: var(--gray-text-color);
 
         }
     }
@@ -63,7 +63,7 @@
             margin-bottom: .5em;
             font-weight: 400;
             font-size: 1em;
-            color: #3f3d3d;
+            color: var(--gray-text-color);
 
         }
     }
@@ -243,9 +243,9 @@
         width: 100%;
 
         mat-grid-tile {
-            background-size: cover; /* Cover the entire area of the tile */
-            background-position: center; /* Center the image in the tile */
-            overflow: hidden; /* Prevent any overflow if the image is too big */
+            background-size: cover; 
+            background-position: center;
+            overflow: hidden; 
           
             .tile-content {
               position: absolute;

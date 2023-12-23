@@ -1,0 +1,81 @@
+.aboutContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding-left: 1em;
+    padding-right: 3em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    .photoArea{
+        
+        img{
+        width: 50em !important;
+        }
+    }
+
+    .contentArea {
+        padding-left: 3em; 
+        display: flex;
+        justify-content: flex-start;
+        //  align-items: center;
+        flex-direction: column;
+    
+        h1 {
+            font-size: 2em; 
+            font-weight: 800;
+            color: var(--main-red-color);
+        }
+    
+        p {
+            font-size: 1.2em; 
+            color: var(--gray-text-color);
+        }
+
+        .cardsArea{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+
+            mat-card{
+                
+                background-color: transparent;
+                border: 0px solid transparent;
+                box-shadow: 0px 0px 0px 0px transparent;
+
+                .cardTitleArea{
+                    display: flex;
+                    justify-content: flex-start;
+                    margin-top: 1em;
+                    margin-left: 1em;
+                    margin-right: 1em;
+
+                    mat-icon{
+                        font-size: 2em !important;
+                        width: 2em;
+                        height: 2em;
+                    }
+                    
+                    h2{
+                        color: var(--main-red-color);
+                        font-weight: 600;
+                        font-size: 1.4em;
+                    }
+                }
+
+                .cardContentArea{
+                    p {
+                        font-size: 1.1em;
+                        margin-left: 1em;
+                    }
+                }
+                
+            }
+        }
+    
+
+    }
+    
+}
