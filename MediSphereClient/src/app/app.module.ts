@@ -23,6 +23,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { PatientDashboardComponent } from './platform/patient-dashboard/patient-dashboard.component';
+import { DoctorDashboardComponent } from './platform/doctor-dashboard/doctor-dashboard.component';
+import { FrontDeskDashboardComponent } from './platform/front-desk-dashboard/front-desk-dashboard.component';
+import { AdminDashboardComponent } from './platform/admin-dashboard/admin-dashboard.component';
+import { WelcomeTextComponent } from './platform/platform_shared/welcome-text/welcome-text.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +42,12 @@ import {MatInputModule} from '@angular/material/input';
     DepartmentsComponent,
     ContactComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PatientDashboardComponent,
+    DoctorDashboardComponent,
+    FrontDeskDashboardComponent,
+    AdminDashboardComponent,
+    WelcomeTextComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +59,8 @@ import {MatInputModule} from '@angular/material/input';
     MatGridListModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

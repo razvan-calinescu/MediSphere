@@ -1,0 +1,30 @@
+.welcomeText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .mainTitle{
+        margin-top: 1em;
+        h1{
+            color: var(--gray-text-color);
+            text-align: center;
+            font-size: 2em;
+        };
+
+        h2{
+            color: var(--gray-text-color);
+            text-align: center;
+            font-size: 1.8em;
+        }
+    }
+
+    .subTitle{
+        margin-top: 5em;
+        h1{
+            color: var(--main-red-color);
+            font-weight: 600;
+            font-size: 1.6em;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+<div class="welcomeText">
+<div class="mainTitle">
+<h1>Hello, <b>{{userName}}</b>!</h1>
+<h2>Welcome to your MediSphere account.</h2>
+</div>
+<div class="subTitle">
+
+<h1 *ngIf="accountType == 'doctor'">MediSphere Doctor Office</h1>
+<h1 *ngIf="accountType == 'patient'">MediSphere Patient Hub</h1>
+<h1 *ngIf="accountType == 'frontDesk'">MediSphere Front Desk</h1>
+<h1 *ngIf="accountType == 'admin'">MediSphere Admin</h1>
+
+</div>
+</div>

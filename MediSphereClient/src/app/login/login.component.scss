@@ -10,12 +10,14 @@
 
         mat-card{
 
+      
         display:flex;
         justify-content: center;
         align-items: center;
         flex-direction: center;
         width: 30em;
         height: 35em;
+        box-shadow: 0 5px 15px rgba(37, 37, 37, 0.3);
             
         .upperArea{
             img{
@@ -24,11 +26,24 @@
         } 
         
         .lowerArea{
-            
+            margin-top: 3em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .loginForm{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                
+            }
         }
 
         
 
          }
     }
+    
 }
