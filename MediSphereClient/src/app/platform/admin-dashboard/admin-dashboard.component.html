@@ -1,1 +1,17 @@
-<p>admin-dashboard works!</p>
+<div class="dashboard">
+    <app-welcome-text [accountType]="'admin'" [userName]="'AddAdminName'"></app-welcome-text>
+    <div class="cardsArea">
+        <div class="row2">
+            <mat-card>
+                <mat-icon aria-hidden="false" aria-label="Icon label">group</mat-icon>
+                <h1>Manage Accounts</h1>
+                <p>List, edit amd delete accounts</p>
+            </mat-card>
+            <mat-card>
+                <mat-icon aria-hidden="false" aria-label="Icon label">add_circle</mat-icon>
+                <h1>Create Account</h1>
+                <p>Create a new account</p>
+            </mat-card>
+        </div>
+    </div>
+</div>

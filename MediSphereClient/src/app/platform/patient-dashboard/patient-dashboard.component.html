@@ -1,1 +1,22 @@
-<p>patient-dashboard works!</p>
+<div class="dashboard">
+    <app-welcome-text [accountType]="'pationt'" [userName]="'AddPatientName'"></app-welcome-text>
+    <div class="cardsArea">
+        <div class="row3">
+            <mat-card>
+                <mat-icon aria-hidden="false" aria-label="Icon label">note_add</mat-icon>
+                <h1>Check Documents</h1>
+                <p>See all recent prescriptions and notes issued after consultations</p>
+            </mat-card>
+            <mat-card>
+                <mat-icon aria-hidden="false" aria-label="Icon label">science</mat-icon>
+                <h1>Check Recent Results</h1>
+                <p>List all test results</p>
+            </mat-card>
+            <mat-card>
+                <mat-icon aria-hidden="false" aria-label="Icon label">calendar_month</mat-icon>
+                <h1>Manage Appointments</h1>
+                <p>Check current and upcoming appointments</p>
+            </mat-card>
+        </div>
+    </div>
+</div>
