@@ -18,14 +18,14 @@ namespace MediSphere.DAL.Repositories
             _context = context;
         }
 
-        public async Task<User> GetByIdAsync(string cnp)
-        {
-            return await _context.Users.FindAsync(cnp);
-        }
-
-        public async Task<User> GetByUsernameAsync(string email)
+        public async Task<User> GetByEmailAsync(string email)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.email == email);
+        }
+
+        public async Task<User> GetByCNPAsync(string Cnp)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.cnp == Cnp);
         }
 
         public async Task CreateUserAsync(User user)
@@ -42,7 +42,7 @@ namespace MediSphere.DAL.Repositories
 
         public async Task DeleteUserAsync(string cnp)
         {
-            var user = await GetByIdAsync(cnp);
+            var user = await GetByCNPAsync(cnp);
             if (user != null)
             {
                 _context.Users.Remove(user);

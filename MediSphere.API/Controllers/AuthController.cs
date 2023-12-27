@@ -15,13 +15,29 @@ namespace MediSphere.API.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(string username, string password)
+        public async Task<IActionResult> Login(string email, string password)
         {
-            var token = _authService.Authenticate(username, password);
+            var token = await _authService.AuthenticateAsync(email, password);
             if (token == null)
-                return Unauthorized();
+            {
+                return Unauthorized("Invalid username or password.");
+            }
 
             return Ok(new { Token = token });
         }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(string cnp, string email, string password, string fName, string lName, string role)
+        {
+            bool userExists = await _authService.RegisterAsync(cnp, email, password, fName, lName, role);
+
+            if (!userExists)
+            {
+                return BadRequest("User already exists.");
+            }
+
+            return Ok("User registered successfully.");
+        }
+
     }
 }

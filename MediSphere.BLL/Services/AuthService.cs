@@ -1,5 +1,6 @@
 ﻿using MediSphere.DAL.Entities;
 using MediSphere.DAL.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -23,15 +24,42 @@ namespace MediSphere.BLL.Services
             _configuration = configuration;
         }
 
-        public string Authenticate(string username, string password)
+        public async Task<string> AuthenticateAsync(string email, string password)
         {
-            var user = _userRepository.GetByUsernameAsync(username).Result;
-            if (user == null || !VerifyPassword(password, user.password))
+            var user = await _userRepository.GetByEmailAsync(email);
+            if (user == null || !VerifyPassword(user, password, user.password))
             {
                 return null;
             }
 
             return GenerateJwtToken(user);
+        }
+
+        public string getHash(User user, string providedPassword)
+        {
+            var passwordHasher = new PasswordHasher<User>();
+            return passwordHasher.HashPassword(user, providedPassword);
+        }
+
+        public async Task<bool> RegisterAsync(string Cnp, string Email, string Password, string FName, string LName, string Role)
+        {
+            if (await _userRepository.GetByCNPAsync(Cnp) != null)
+            {
+                return false; 
+            }
+
+            var user = new User
+            {
+                cnp = Cnp,
+                email = Email,
+                fname = FName,
+                lname = LName,
+                role = Role,
+                password = getHash(new User(), Password)
+            };
+
+            await _userRepository.CreateUserAsync(user);
+            return true;
         }
 
         private string GenerateJwtToken(User user)
@@ -52,11 +80,15 @@ namespace MediSphere.BLL.Services
             return tokenHandler.WriteToken(token);
         }
 
-        private bool VerifyPassword(string providedPassword, string storedHash)
+        private bool VerifyPassword(User user, string providedPassword, string storedHash)
         {
-            // Implement password verification logic
-            // You can use PasswordHasher<T> for hashing and verification
-            return true; // Placeholder: return actual verification result
+            var passwordHasher = new PasswordHasher<User>();
+            var verificationResult = passwordHasher.VerifyHashedPassword(new User(), storedHash, providedPassword);
+
+
+            return verificationResult == PasswordVerificationResult.Success;
+        
         }
+
     }
 }

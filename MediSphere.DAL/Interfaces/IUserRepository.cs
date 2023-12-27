@@ -9,8 +9,8 @@ namespace MediSphere.DAL.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User> GetByIdAsync(string cnp);
-        Task<User> GetByUsernameAsync(string email);
+        Task<User> GetByCNPAsync(string cnp);
+        Task<User> GetByEmailAsync(string email);
         Task CreateUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(string cnp);
