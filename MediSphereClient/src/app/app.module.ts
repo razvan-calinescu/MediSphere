@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 import { PatientDashboardComponent } from './platform/patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './platform/doctor-dashboard/doctor-dashboard.component';
 import { FrontDeskDashboardComponent } from './platform/front-desk-dashboard/front-desk-dashboard.component';
@@ -60,7 +64,9 @@ import { WelcomeTextComponent } from './platform/platform_shared/welcome-text/we
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
