@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3j+WzA9XdrY4zXPWUQQRru5ykc8XJkk1Jk44hr8hJfpfTYI0aaSPqFAq6EB/r1OJigfBy3uBJ9Gx7/BHzLFW8A==",
+  "dgSpecHash": "W54eAiArsCQkmC2MWNxtw166CsXQ4IQxwCPTx7SDvdY/JEE7xPSvLcIw15hI+RGEBGpfgsfcSQSX4dwxJskl4w==",
   "success": true,
   "projectFilePath": "C:\\repos\\MediSphere\\MediSphere.BLL\\MediSphere.BLL.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\razva\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Users\\razva\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\razva\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.10\\microsoft.aspnetcore.authentication.jwtbearer.6.0.10.nupkg.sha512",
+    "C:\\Users\\razva\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\razva\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.0\\microsoft.aspnetcore.cryptography.internal.6.0.0.nupkg.sha512",
     "C:\\Users\\razva\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.0\\microsoft.aspnetcore.cryptography.keyderivation.6.0.0.nupkg.sha512",
     "C:\\Users\\razva\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",

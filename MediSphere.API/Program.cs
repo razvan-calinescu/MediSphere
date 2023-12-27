@@ -9,6 +9,17 @@ using MediSphere.BLL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+    corsBuilder =>
+    {
+        corsBuilder.AllowAnyOrigin() 
+                   .AllowAnyHeader()
+                   .AllowAnyMethod(); 
+    });
+});
+
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -47,6 +58,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication(); // Make sure to call UseAuthentication before UseAuthorization
 app.UseAuthorization();
+
+app.UseCors("AllowAllOrigins");
 
 app.MapControllers();
 

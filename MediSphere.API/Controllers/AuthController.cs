@@ -17,6 +17,7 @@ namespace MediSphere.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(string email, string password)
         {
+            Console.WriteLine("Here");
             var token = await _authService.AuthenticateAsync(email, password);
             if (token == null)
             {
