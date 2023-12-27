@@ -35,6 +35,48 @@ namespace MediSphere.BLL.Services
             return GenerateJwtToken(user);
         }
 
+        public async Task<bool> DeleteAsync(string Cnp)
+        {
+            var user = await _userRepository.GetByCNPAsync(Cnp);
+
+            if (user == null)
+                return false;
+
+            await _userRepository.DeleteUserAsync(Cnp);
+
+            return true;
+
+
+        }
+
+        public async Task<bool> UpdateAsync(string Cnp, string Email = null, string Password = null, string FName = null, string LName = null, string Role = null)
+        {
+            var user = await _userRepository.GetByCNPAsync(Cnp);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+
+            if (!string.IsNullOrEmpty(Email))
+                user.email = Email;
+            if (!string.IsNullOrEmpty(FName))
+                user.fname = FName;
+            if (!string.IsNullOrEmpty(LName))
+                user.lname = LName;
+            if (!string.IsNullOrEmpty(Role))
+                user.role = Role;
+
+            if (!string.IsNullOrEmpty(Password))
+                user.password = getHash(user, Password);
+
+            await _userRepository.UpdateUserAsync(user);
+
+            return true;
+
+        }
+
         public string getHash(User user, string providedPassword)
         {
             var passwordHasher = new PasswordHasher<User>();

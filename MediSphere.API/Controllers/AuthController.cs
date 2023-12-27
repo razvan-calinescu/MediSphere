@@ -39,5 +39,34 @@ namespace MediSphere.API.Controllers
             return Ok("User registered successfully.");
         }
 
+        [HttpPut("editUser")]
+        public async Task<IActionResult> EditUser(string cnp, string email, string password, string fName, string lName, string role)
+        {
+            bool userExists = await _authService.UpdateAsync(cnp, email, password, fName, lName, role);
+
+            if (userExists == true)
+            {
+                return Ok("User updated successfully.");
+            }
+
+            return BadRequest("User not existent.");
+
+        }
+
+
+        [HttpDelete("deleteUser/{cnp}")]
+        public async Task<IActionResult> DeleteUser(string cnp)
+        {
+            bool userExists = await _authService.DeleteAsync(cnp);
+
+            if (userExists == true)
+            {
+                return Ok("User deleted successfully.");
+            }
+
+            return BadRequest("User not existent.");
+
+        }
+
     }
 }

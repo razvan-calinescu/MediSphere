@@ -36,6 +36,7 @@ namespace MediSphere.DAL.Repositories
 
         public async Task UpdateUserAsync(User user)
         {
+            Console.WriteLine("HERE");
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
