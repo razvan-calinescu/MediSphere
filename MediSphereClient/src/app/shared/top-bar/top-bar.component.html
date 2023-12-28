@@ -41,7 +41,9 @@
     <div class="navbar-actions">
  
       <!-- <a href="#" class="action-button">Programare Online</a> -->
-      <a routerLink="/login" class="action-button">   <i class="material-icons">public</i>MySphere</a>
+      <a routerLink="/login" class="action-button" *ngIf="!isLoggedIn">   <i class="material-icons">public</i>MySphere</a>
+      <a class="action-button" *ngIf="isLoggedIn" (click)="logOut()">   <i class="material-icons">logout</i>Log-Out</a>
+
      
     </div>
   </nav>
