@@ -1,10 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-front-desk-dashboard',
   templateUrl: './front-desk-dashboard.component.html',
   styleUrls: ['./front-desk-dashboard.component.scss']
 })
-export class FrontDeskDashboardComponent {
+export class FrontDeskDashboardComponent implements OnInit{
 
+  constructor(
+    private router: Router
+  ){
+    
+  }
+
+  ngOnInit(){
+    this.checkLogIn()
+  }
+
+  checkLogIn(): void {
+    if(!localStorage.getItem('authToken') || !localStorage.getItem('userRole') || localStorage.getItem('userRole')!='frontDesk')
+      this.router.navigateByUrl('unauthorised')
+
+  }
 }

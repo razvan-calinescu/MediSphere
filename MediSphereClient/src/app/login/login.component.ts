@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from 'api/auth.service';
+import { mergeMap } from 'rxjs';
+import { AuthService } from 'src/services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,7 @@ import { AuthService } from 'api/auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   passwordHide: boolean = true;
+  public isLoading: boolean = false;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -28,19 +31,39 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm.value)
-    if (this.loginForm.valid) {
 
+    if (this.loginForm.valid) {
+      this.isLoading = true;
       const email = this.loginForm.value.email
       const password = this.loginForm.value.password
-      this.authService.authLoginPost(email, password).subscribe(
-        (token) => {
+      this.authService.authLoginPost(email, password).pipe(
+        mergeMap(token => {
           localStorage.setItem("authToken", token.token);
-          //ROLE
-          this.router.navigateByUrl('/admin')
-         
-        } 
-      )
+          return this.authService.authUserEmailGet(email);
+        })
+      ).subscribe(
+        user => {
+          const role = user.role.replace(/\s/g, ""); ///removing witespaces from role
+          localStorage.setItem("userRole", role);
+          this.isLoading = false;
+          
+          if(role == 'admin')
+           this.router.navigateByUrl('adminDashboard')
+          else if(role == 'doctor')
+            this.router.navigateByUrl('doctorDashboard')
+            else if(role == 'patient')
+            this.router.navigateByUrl('patientDashboard')
+            else if(role == 'frontDesk')
+            this.router.navigateByUrl('frontDeskDashboard')
+
+
+
+        },
+        error => {
+          this.snackBarService.open("Login failed. Check credentials")
+          this.isLoading = false;
+        }
+      );
     } else {
       if(this.loginForm.value.email == '')
       this.snackBarService.open("Please fill in the Email");

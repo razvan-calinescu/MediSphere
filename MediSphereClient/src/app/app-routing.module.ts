@@ -12,6 +12,7 @@ import { DoctorDashboardComponent } from './platform/doctor-dashboard/doctor-das
 import { PatientDashboardComponent } from './platform/patient-dashboard/patient-dashboard.component';
 import { AdminDashboardComponent } from './platform/admin-dashboard/admin-dashboard.component';
 import { FrontDeskDashboardComponent } from './platform/front-desk-dashboard/front-desk-dashboard.component';
+import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'frontDeskDashboard',
     component: FrontDeskDashboardComponent
+  },
+  {
+    path: 'unauthorised',
+    component: UnauthorisedComponent
   },
 
   // Uncomment and add a component for the 'portal' path if needed

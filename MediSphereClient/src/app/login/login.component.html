@@ -1,12 +1,15 @@
 <div class="loginContainer">
 
-    <div class="loginCard">
+    <div class="loginCard" >
         <mat-card>
             <div class="upperArea">
                 <img src="assets/logo/logo-no-background.png">
             </div>
-            <div class="lowerArea">
-                <mat-card-content>
+          
+
+            <div class="lowerArea" >
+              <mat-spinner *ngIf="isLoading" color="warn"></mat-spinner>
+                <mat-card-content *ngIf="!isLoading">
                   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="loginForm">
                     <p>
                       <mat-form-field appearance="fill" color="warn">
@@ -25,7 +28,6 @@
                     </mat-form-field>
                     <button mat-raised-button color="warn" type="submit">Log in</button>
                   </form>
-                  
                 </mat-card-content>
             </div>
         </mat-card>

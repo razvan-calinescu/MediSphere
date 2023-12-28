@@ -26,13 +26,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { PatientDashboardComponent } from './platform/patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './platform/doctor-dashboard/doctor-dashboard.component';
 import { FrontDeskDashboardComponent } from './platform/front-desk-dashboard/front-desk-dashboard.component';
 import { AdminDashboardComponent } from './platform/admin-dashboard/admin-dashboard.component';
-import { WelcomeTextComponent } from './platform/platform_shared/welcome-text/welcome-text.component'
+import { WelcomeTextComponent } from './platform/platform_shared/welcome-text/welcome-text.component';
+import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component'
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { WelcomeTextComponent } from './platform/platform_shared/welcome-text/we
     DoctorDashboardComponent,
     FrontDeskDashboardComponent,
     AdminDashboardComponent,
-    WelcomeTextComponent
+    WelcomeTextComponent,
+    UnauthorisedComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ import { WelcomeTextComponent } from './platform/platform_shared/welcome-text/we
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
