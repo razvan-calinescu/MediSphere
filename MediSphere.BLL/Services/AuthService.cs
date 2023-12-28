@@ -35,6 +35,28 @@ namespace MediSphere.BLL.Services
             return GenerateJwtToken(user);
         }
 
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            var user = await _userRepository.GetByEmailAsync(email);
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user;
+        }
+
+        public async Task<User> GetUserByCNPAsync(string cnp)
+        {
+            var user = await _userRepository.GetByCNPAsync(cnp);
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user;
+        }
+
         public async Task<bool> DeleteAsync(string Cnp)
         {
             var user = await _userRepository.GetByCNPAsync(Cnp);

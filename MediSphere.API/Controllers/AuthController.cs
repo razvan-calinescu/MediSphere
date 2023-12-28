@@ -17,7 +17,7 @@ namespace MediSphere.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(string email, string password)
         {
-            Console.WriteLine("Here");
+         
             var token = await _authService.AuthenticateAsync(email, password);
             if (token == null)
             {
@@ -25,6 +25,31 @@ namespace MediSphere.API.Controllers
             }
 
             return Ok(new { Token = token });
+        }
+
+        [HttpGet("User/email")]
+        public async Task<IActionResult> GetUserByEmail(string email)
+        {
+            var user = await _authService.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                return BadRequest("Invalid CNP.");
+            }
+
+            return Ok(user);
+        }
+
+        [HttpGet("User/cnp")]
+        public async Task<IActionResult> GetUserByCNP(string cnp)
+        {
+            Console.WriteLine("Here");
+            var user = await _authService.GetUserByCNPAsync(cnp);
+            if (user == null)
+            {
+                return BadRequest("Invalid email.");
+            }
+
+            return Ok(user);
         }
 
         [HttpPost("register")]
