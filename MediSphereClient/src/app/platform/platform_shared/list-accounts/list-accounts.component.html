@@ -9,13 +9,20 @@
         <mat-card>
             <mat-spinner *ngIf="!loadedData" color="warn"></mat-spinner>
 
-            <!-- <div class="upperArea">
-                <mat-form-field appearance="fill" color="warn">
-                    <mat-label>Email Address</mat-label>
-                    <input matInput formControlName="email">
-                    <mat-icon matSuffix>email</mat-icon>
+            <div class="upperArea">
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>Search</mat-label>
+                    <input matInput [formControl]="searchControl">
+                    <mat-icon matSuffix>search</mat-icon>
                   </mat-form-field>
-            </div> -->
+
+                  <mat-paginator #paginator [length]="totalRecords"
+                    [pageSize]="5"
+                    [pageSizeOptions]="[5, 10, 20]"
+                    showFirstLastButtons
+                    aria-label="Select page of users" color="warn" *ngIf="loadedData">
+                    </mat-paginator>
+            </div>
           
 
             <div class="lowerArea" >
@@ -89,12 +96,7 @@
                       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     </table>
                   
-                    <mat-paginator #paginator [length]="totalRecords"
-                    [pageSize]="5"
-                    [pageSizeOptions]="[5, 10, 20]"
-                    showFirstLastButtons
-                    aria-label="Select page of users" color="warn" *ngIf="loadedData">
-                    </mat-paginator>
+                    
                   </div>
             </div>
         </mat-card>

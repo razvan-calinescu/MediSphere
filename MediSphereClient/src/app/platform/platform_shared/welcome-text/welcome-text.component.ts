@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class WelcomeTextComponent implements OnInit{
   public accountType: any;
-  @Input() userName: any;
+  public userName: any;
 
   constructor(
    
@@ -19,6 +19,7 @@ export class WelcomeTextComponent implements OnInit{
   ngOnInit(){
 
     this.accountType = localStorage.getItem('userRole')
+    this.userName = localStorage.getItem('userFName')
   }
 
  

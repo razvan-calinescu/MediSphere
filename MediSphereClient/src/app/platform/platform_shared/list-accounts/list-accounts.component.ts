@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { forkJoin, mergeMap, of } from 'rxjs';
@@ -20,6 +21,8 @@ export class ListAccountsComponent implements OnInit, AfterViewInit{
   totalRecords: number = 0;
   public loadedData = false;
 
+  searchControl = new FormControl();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
@@ -40,9 +43,23 @@ export class ListAccountsComponent implements OnInit, AfterViewInit{
     else if(role=='doctor'){
       this.displayedColumns = ['role','cnp', 'name', 'email', 'phone', 'address', 'gender','birthDate', 'bloodType' ];
     }
+  
 
     this.loadData();
 
+    this.searchControl.valueChanges.subscribe((searchValue: string) => {
+      this.applyFilter(searchValue);
+    });
+
+
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   ngAfterViewInit() {

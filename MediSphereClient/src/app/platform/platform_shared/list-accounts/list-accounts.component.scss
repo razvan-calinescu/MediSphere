@@ -49,13 +49,23 @@
             max-height: 30em;
             min-height: 20em;
             box-shadow: 0 5px 15px rgba(37, 37, 37, 0.3);
-            overflow-x: auto;
+            overflow-x: hidden;
 
            
   
                 
             .upperArea{
-           
+                display: flex;
+                width: 80em;
+                justify-content: flex-start;
+                margin-top: 1em;
+                gap: 17em;
+                padding-left: 10em;
+                overflow-x: hidden;
+                padding-top: 1em;
+
+
+               
             } 
             
             .lowerArea{
@@ -64,16 +74,17 @@
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                overflow-x: hidden;
 
                 table{
                     width: 70em;
-                    padding-top: 3em;
-    
+                    padding-top: 2em;
+                    padding-bottom: 3em;
                 }
 
                 mat-paginator{
-                    width: 80em;
-                    padding-bottom: 3em;
+                    width: 40em;
+                
                 }
 
             }

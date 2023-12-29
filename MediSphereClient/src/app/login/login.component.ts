@@ -45,6 +45,8 @@ export class LoginComponent implements OnInit {
         })
       ).subscribe(
         user => {
+          const fName = user.fname;
+          localStorage.setItem("userFName", fName);
           const role = user.role.replace(/\s/g, ""); ///removing witespaces from role
           localStorage.setItem("userRole", role);
           this.loginMonitor.updateLoginStatus(); // Update the login state for service & topbar
