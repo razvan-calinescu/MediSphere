@@ -14,6 +14,6 @@ namespace MediSphere.DAL.Interfaces
         Task CreateUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(string cnp);
-
+        Task<User[]> GetAllUsersAsync();
     }
 }

@@ -71,6 +71,18 @@ namespace MediSphere.BLL.Services
 
         }
 
+        public async Task<User[]> GetAllUsersAsync()
+        {
+            var users = await _userRepository.GetAllUsersAsync();
+
+            if (users == null)
+            {
+                return null;
+            }
+
+            return users;
+        }
+
         public async Task<bool> UpdateAsync(string Cnp, string Email = null, string Password = null, string FName = null, string LName = null, string Role = null)
         {
             var user = await _userRepository.GetByCNPAsync(Cnp);

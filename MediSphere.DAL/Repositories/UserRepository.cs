@@ -23,6 +23,11 @@ namespace MediSphere.DAL.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.email == email);
         }
 
+        public async Task<User[]> GetAllUsersAsync()
+        {
+            return await _context.Users.ToArrayAsync();
+        }
+
         public async Task<User> GetByCNPAsync(string Cnp)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.cnp == Cnp);

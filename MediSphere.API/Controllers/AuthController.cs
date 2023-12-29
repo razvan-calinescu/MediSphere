@@ -52,6 +52,19 @@ namespace MediSphere.API.Controllers
             return Ok(user);
         }
 
+        [HttpGet("allUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+       
+            var users = await _authService.GetAllUsersAsync();
+            if (users == null)
+            {
+                return BadRequest("Error.");
+            }
+
+            return Ok(users);
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(string cnp, string email, string password, string fName, string lName, string role)
         {

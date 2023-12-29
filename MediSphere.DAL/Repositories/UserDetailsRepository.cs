@@ -23,6 +23,7 @@ namespace MediSphere.DAL.Repositories
             return await _context.UsersDetails.FirstOrDefaultAsync(uDetails => uDetails.cnp == Cnp);
         }
 
+
         public async Task<UsersDetails> GetUserDetailsByEmailAsync(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(user => user.email == email);
