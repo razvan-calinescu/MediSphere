@@ -29,6 +29,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { PatientDashboardComponent } from './platform/patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './platform/doctor-dashboard/doctor-dashboard.component';
@@ -37,7 +40,7 @@ import { AdminDashboardComponent } from './platform/admin-dashboard/admin-dashbo
 import { WelcomeTextComponent } from './platform/platform_shared/welcome-text/welcome-text.component';
 import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
 import { ListAccountsComponent } from './platform/platform_shared/list-accounts/list-accounts.component';
-import { NewAccountComponent } from './platform/platform_shared/new-account/new-account.component';
+import { CreateAccountComponent } from './platform/platform_shared/create-account/create-account.component';
 
 
 @NgModule({
@@ -60,7 +63,7 @@ import { NewAccountComponent } from './platform/platform_shared/new-account/new-
     WelcomeTextComponent,
     UnauthorisedComponent,
     ListAccountsComponent,
-    NewAccountComponent
+    CreateAccountComponent
 
   ],
   imports: [
@@ -79,7 +82,10 @@ import { NewAccountComponent } from './platform/platform_shared/new-account/new-
     HttpClientModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

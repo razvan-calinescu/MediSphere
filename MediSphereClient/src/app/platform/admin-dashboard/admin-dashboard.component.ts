@@ -27,4 +27,8 @@ export class AdminDashboardComponent {
    toAccountList(): void {
       this.router.navigateByUrl('listAccounts')
    }
+
+   toCreateAccount(): void {
+    this.router.navigateByUrl('newAccount')
+  }
 }

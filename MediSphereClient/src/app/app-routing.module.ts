@@ -14,7 +14,7 @@ import { AdminDashboardComponent } from './platform/admin-dashboard/admin-dashbo
 import { FrontDeskDashboardComponent } from './platform/front-desk-dashboard/front-desk-dashboard.component';
 import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
 import { ListAccountsComponent } from './platform/platform_shared/list-accounts/list-accounts.component';
-import { NewAccountComponent } from './platform/platform_shared/new-account/new-account.component';
+import { CreateAccountComponent } from './platform/platform_shared/create-account/create-account.component';
 
 const routes: Routes = [
   {
@@ -71,7 +71,7 @@ const routes: Routes = [
   },
   {
     path: 'newAccount',
-    component: NewAccountComponent
+    component: CreateAccountComponent
   },
 
   // Uncomment and add a component for the 'portal' path if needed
