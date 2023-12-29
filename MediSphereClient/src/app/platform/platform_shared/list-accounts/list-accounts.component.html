@@ -1,0 +1,105 @@
+<div class="tableContainer">
+
+    <div class="sectionTitle">
+        <h1>Accounts List</h1>
+        <p>The list below contains patient details</p>
+    </div>
+
+    <div class="tableCard">
+        <mat-card>
+            <mat-spinner *ngIf="!loadedData" color="warn"></mat-spinner>
+
+            <!-- <div class="upperArea">
+                <mat-form-field appearance="fill" color="warn">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput formControlName="email">
+                    <mat-icon matSuffix>email</mat-icon>
+                  </mat-form-field>
+            </div> -->
+          
+
+            <div class="lowerArea" >
+                <div>
+
+                    <table mat-table [dataSource]="dataSource" *ngIf="loadedData">
+
+                          <!-- Role Column -->
+                      <ng-container matColumnDef="role">
+                        <th mat-header-cell *matHeaderCellDef> Role </th>
+                        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                      </ng-container>
+
+                  
+                      <!-- CNP Column -->
+                      <ng-container matColumnDef="cnp">
+                        <th mat-header-cell *matHeaderCellDef> CNP </th>
+                        <td mat-cell *matCellDef="let element"> {{element.cnp}} </td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.fname}} {{element.lname}}</td>
+                      </ng-container>
+
+                      
+                           <!-- Email Column -->
+                           <ng-container matColumnDef="email">
+                            <th mat-header-cell *matHeaderCellDef> Email </th>
+                            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                          </ng-container>
+
+                                 <!-- Phone Column -->
+                      <ng-container matColumnDef="phone">
+                        <th mat-header-cell *matHeaderCellDef> Phone No. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                      </ng-container>
+
+                      
+                               <!-- Address Column -->
+                               <ng-container matColumnDef="address">
+                                <th mat-header-cell *matHeaderCellDef> Address </th>
+                                <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                              </ng-container>
+                  
+                      <!-- Gender Column -->
+                      <ng-container matColumnDef="gender">
+                        <th mat-header-cell *matHeaderCellDef> Gender </th>
+                        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                      </ng-container>
+
+                        
+                  
+                      <!-- Birthdate Column -->
+                      <ng-container matColumnDef="birthDate">
+                        <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+                      </ng-container>
+
+
+                             <!-- BloodType Column -->
+                      <ng-container matColumnDef="bloodType">
+                        <th mat-header-cell *matHeaderCellDef> Blood Type </th>
+                        <td mat-cell *matCellDef="let element"> {{element.bloodType}} </td>
+                      </ng-container>
+
+
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  
+                    <mat-paginator #paginator [length]="totalRecords"
+                    [pageSize]="5"
+                    [pageSizeOptions]="[5, 10, 20]"
+                    showFirstLastButtons
+                    aria-label="Select page of users" color="warn" *ngIf="loadedData">
+                    </mat-paginator>
+                  </div>
+            </div>
+        </mat-card>
+
+    </div>
+
+
+</div>

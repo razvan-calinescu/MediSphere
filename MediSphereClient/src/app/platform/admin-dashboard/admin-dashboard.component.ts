@@ -22,5 +22,9 @@ export class AdminDashboardComponent {
     if(!localStorage.getItem('authToken') || !localStorage.getItem('userRole') || localStorage.getItem('userRole')!='admin')
       this.router.navigateByUrl('unauthorised')
 
-  }
+   }
+
+   toAccountList(): void {
+      this.router.navigateByUrl('listAccounts')
+   }
 }

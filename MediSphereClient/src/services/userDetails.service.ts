@@ -28,7 +28,7 @@ import { Configuration }                                     from 'configuration
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class UserDetailsService {
 
     protected basePath = 'https://localhost:7257';
     public defaultHeaders = new HttpHeaders();
@@ -90,13 +90,50 @@ export class AuthService {
     }
 
     /**
+     * @param cnp 
+     * @param email 
+     * @param gender 
+     * @param phone 
+     * @param birthdate 
+     * @param bloodType 
+     * @param address 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public authAllUsersGet(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public authAllUsersGet(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public authAllUsersGet(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public authAllUsersGet(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public userDetailsAddUserDetailsPost(cnp?: string, email?: string, gender?: string, phone?: string, birthdate?: string, bloodType?: string, address?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public userDetailsAddUserDetailsPost(cnp?: string, email?: string, gender?: string, phone?: string, birthdate?: string, bloodType?: string, address?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public userDetailsAddUserDetailsPost(cnp?: string, email?: string, gender?: string, phone?: string, birthdate?: string, bloodType?: string, address?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public userDetailsAddUserDetailsPost(cnp?: string, email?: string, gender?: string, phone?: string, birthdate?: string, bloodType?: string, address?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (cnp !== undefined && cnp !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>cnp, 'cnp');
+        }
+        if (email !== undefined && email !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>email, 'email');
+        }
+        if (gender !== undefined && gender !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>gender, 'gender');
+        }
+        if (phone !== undefined && phone !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>phone, 'phone');
+        }
+        if (birthdate !== undefined && birthdate !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>birthdate, 'birthdate');
+        }
+        if (bloodType !== undefined && bloodType !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>bloodType, 'bloodType');
+        }
+        if (address !== undefined && address !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>address, 'address');
+        }
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -128,10 +165,11 @@ export class AuthService {
             }
         }
 
-        let localVarPath = `/Auth/allUsers`;
-        return this.httpClient.request<any>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/UserDetails/addUserDetails`;
+        return this.httpClient.request<any>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -146,12 +184,12 @@ export class AuthService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public authDeleteUserCnpDelete(cnp: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public authDeleteUserCnpDelete(cnp: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public authDeleteUserCnpDelete(cnp: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public authDeleteUserCnpDelete(cnp: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public userDetailsDeleteUserDetailsCnpDelete(cnp: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public userDetailsDeleteUserDetailsCnpDelete(cnp: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public userDetailsDeleteUserDetailsCnpDelete(cnp: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public userDetailsDeleteUserDetailsCnpDelete(cnp: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
         if (cnp === null || cnp === undefined) {
-            throw new Error('Required parameter cnp was null or undefined when calling authDeleteUserCnpDelete.');
+            throw new Error('Required parameter cnp was null or undefined when calling userDetailsDeleteUserDetailsCnpDelete.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -184,7 +222,7 @@ export class AuthService {
             }
         }
 
-        let localVarPath = `/Auth/deleteUser/${this.configuration.encodeParam({name: "cnp", value: cnp, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        let localVarPath = `/UserDetails/deleteUserDetails/${this.configuration.encodeParam({name: "cnp", value: cnp, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
         return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -200,17 +238,18 @@ export class AuthService {
     /**
      * @param cnp 
      * @param email 
-     * @param password 
-     * @param fName 
-     * @param lName 
-     * @param role 
+     * @param gender 
+     * @param phone 
+     * @param birthdate 
+     * @param bloodType 
+     * @param address 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public authEditUserPut(cnp?: string, email?: string, password?: string, fName?: string, lName?: string, role?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public authEditUserPut(cnp?: string, email?: string, password?: string, fName?: string, lName?: string, role?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public authEditUserPut(cnp?: string, email?: string, password?: string, fName?: string, lName?: string, role?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public authEditUserPut(cnp?: string, email?: string, password?: string, fName?: string, lName?: string, role?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public userDetailsEditUserDetailsPut(cnp?: string, email?: string, gender?: string, phone?: string, birthdate?: string, bloodType?: string, address?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public userDetailsEditUserDetailsPut(cnp?: string, email?: string, gender?: string, phone?: string, birthdate?: string, bloodType?: string, address?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public userDetailsEditUserDetailsPut(cnp?: string, email?: string, gender?: string, phone?: string, birthdate?: string, bloodType?: string, address?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public userDetailsEditUserDetailsPut(cnp?: string, email?: string, gender?: string, phone?: string, birthdate?: string, bloodType?: string, address?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (cnp !== undefined && cnp !== null) {
@@ -221,21 +260,25 @@ export class AuthService {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>email, 'email');
         }
-        if (password !== undefined && password !== null) {
+        if (gender !== undefined && gender !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>password, 'password');
+            <any>gender, 'gender');
         }
-        if (fName !== undefined && fName !== null) {
+        if (phone !== undefined && phone !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>fName, 'fName');
+            <any>phone, 'phone');
         }
-        if (lName !== undefined && lName !== null) {
+        if (birthdate !== undefined && birthdate !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>lName, 'lName');
+            <any>birthdate, 'birthdate');
         }
-        if (role !== undefined && role !== null) {
+        if (bloodType !== undefined && bloodType !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>role, 'role');
+            <any>bloodType, 'bloodType');
+        }
+        if (address !== undefined && address !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>address, 'address');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -268,7 +311,7 @@ export class AuthService {
             }
         }
 
-        let localVarPath = `/Auth/editUser`;
+        let localVarPath = `/UserDetails/editUserDetails`;
         return this.httpClient.request<any>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -283,164 +326,14 @@ export class AuthService {
     }
 
     /**
-     * @param email 
-     * @param password 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public authLoginPost(email?: string, password?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public authLoginPost(email?: string, password?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public authLoginPost(email?: string, password?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public authLoginPost(email?: string, password?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
-
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        if (email !== undefined && email !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>email, 'email');
-        }
-        if (password !== undefined && password !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>password, 'password');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/Auth/login`;
-        return this.httpClient.request<any>('post', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                params: localVarQueryParameters,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * @param cnp 
-     * @param email 
-     * @param password 
-     * @param fName 
-     * @param lName 
-     * @param role 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public authRegisterPost(cnp?: string, email?: string, password?: string, fName?: string, lName?: string, role?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public authRegisterPost(cnp?: string, email?: string, password?: string, fName?: string, lName?: string, role?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public authRegisterPost(cnp?: string, email?: string, password?: string, fName?: string, lName?: string, role?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public authRegisterPost(cnp?: string, email?: string, password?: string, fName?: string, lName?: string, role?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
-
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        if (cnp !== undefined && cnp !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>cnp, 'cnp');
-        }
-        if (email !== undefined && email !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>email, 'email');
-        }
-        if (password !== undefined && password !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>password, 'password');
-        }
-        if (fName !== undefined && fName !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>fName, 'fName');
-        }
-        if (lName !== undefined && lName !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>lName, 'lName');
-        }
-        if (role !== undefined && role !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>role, 'role');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/Auth/register`;
-        return this.httpClient.request<any>('post', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                params: localVarQueryParameters,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * @param cnp 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public authUserCnpGet(cnp?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public authUserCnpGet(cnp?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public authUserCnpGet(cnp?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public authUserCnpGet(cnp?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public userDetailsUserDetailsCnpGet(cnp?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public userDetailsUserDetailsCnpGet(cnp?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public userDetailsUserDetailsCnpGet(cnp?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public userDetailsUserDetailsCnpGet(cnp?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (cnp !== undefined && cnp !== null) {
@@ -478,7 +371,7 @@ export class AuthService {
             }
         }
 
-        let localVarPath = `/Auth/User/cnp`;
+        let localVarPath = `/UserDetails/UserDetails/cnp`;
         return this.httpClient.request<any>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -497,10 +390,10 @@ export class AuthService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public authUserEmailGet(email?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public authUserEmailGet(email?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public authUserEmailGet(email?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public authUserEmailGet(email?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public userDetailsUserDetailsEmailGet(email?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public userDetailsUserDetailsEmailGet(email?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public userDetailsUserDetailsEmailGet(email?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public userDetailsUserDetailsEmailGet(email?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (email !== undefined && email !== null) {
@@ -538,7 +431,7 @@ export class AuthService {
             }
         }
 
-        let localVarPath = `/Auth/User/email`;
+        let localVarPath = `/UserDetails/UserDetails/email`;
         return this.httpClient.request<any>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -551,6 +444,5 @@ export class AuthService {
             }
         );
     }
-
 
 }

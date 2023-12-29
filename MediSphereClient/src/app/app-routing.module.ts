@@ -13,6 +13,8 @@ import { PatientDashboardComponent } from './platform/patient-dashboard/patient-
 import { AdminDashboardComponent } from './platform/admin-dashboard/admin-dashboard.component';
 import { FrontDeskDashboardComponent } from './platform/front-desk-dashboard/front-desk-dashboard.component';
 import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
+import { ListAccountsComponent } from './platform/platform_shared/list-accounts/list-accounts.component';
+import { NewAccountComponent } from './platform/platform_shared/new-account/new-account.component';
 
 const routes: Routes = [
   {
@@ -62,6 +64,14 @@ const routes: Routes = [
   {
     path: 'unauthorised',
     component: UnauthorisedComponent
+  },
+  {
+    path: 'listAccounts',
+    component: ListAccountsComponent
+  },
+  {
+    path: 'newAccount',
+    component: NewAccountComponent
   },
 
   // Uncomment and add a component for the 'portal' path if needed

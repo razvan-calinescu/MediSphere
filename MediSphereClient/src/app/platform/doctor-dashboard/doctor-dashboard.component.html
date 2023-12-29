@@ -2,7 +2,7 @@
     <app-welcome-text [userName]="'AddDoctorName'"></app-welcome-text>
     <div class="cardsArea">
         <div class="row2">
-            <mat-card>
+            <mat-card (click)="toAccountList()">
                 <mat-icon aria-hidden="false" aria-label="Icon label">group</mat-icon>
                 <h1>Manage Patients</h1>
                 <p>List all patients & check their details</p>

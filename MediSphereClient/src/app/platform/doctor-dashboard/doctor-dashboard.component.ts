@@ -23,4 +23,8 @@ export class DoctorDashboardComponent implements OnInit{
       this.router.navigateByUrl('unauthorised')
 
   }
+
+  toAccountList(): void {
+    this.router.navigateByUrl('listAccounts')
+ }
 }

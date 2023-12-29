@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { mergeMap } from 'rxjs';
 import { AuthService } from 'src/services/auth.service';
+import { LoginMonitorService } from 'src/services/loginMonitor.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     public formBuilder: FormBuilder,
     public snackBarService: MatSnackBar,
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    private loginMonitor: LoginMonitorService
   ) {}
 
   ngOnInit() {
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
         user => {
           const role = user.role.replace(/\s/g, ""); ///removing witespaces from role
           localStorage.setItem("userRole", role);
+          this.loginMonitor.updateLoginStatus(); // Update the login state for service & topbar
           this.isLoading = false;
           
           if(role == 'admin')

@@ -27,13 +27,18 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
 
 import { PatientDashboardComponent } from './platform/patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './platform/doctor-dashboard/doctor-dashboard.component';
 import { FrontDeskDashboardComponent } from './platform/front-desk-dashboard/front-desk-dashboard.component';
 import { AdminDashboardComponent } from './platform/admin-dashboard/admin-dashboard.component';
 import { WelcomeTextComponent } from './platform/platform_shared/welcome-text/welcome-text.component';
-import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component'
+import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
+import { ListAccountsComponent } from './platform/platform_shared/list-accounts/list-accounts.component';
+import { NewAccountComponent } from './platform/platform_shared/new-account/new-account.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +58,10 @@ import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.compon
     FrontDeskDashboardComponent,
     AdminDashboardComponent,
     WelcomeTextComponent,
-    UnauthorisedComponent
+    UnauthorisedComponent,
+    ListAccountsComponent,
+    NewAccountComponent
+
   ],
   imports: [
     BrowserModule,
@@ -69,7 +77,9 @@ import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.compon
     MatButtonModule,
     MatSnackBarModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
