@@ -13,11 +13,14 @@ namespace MediSphere.DAL
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<UsersDetails> UsersDetails { get; set; }
-        // Define other DB sets...
+        public DbSet<DoctorSpecialities> DoctorSpecialties { get; set; }
+
+
     }
 
 }
