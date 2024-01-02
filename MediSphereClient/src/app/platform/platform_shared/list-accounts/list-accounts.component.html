@@ -7,9 +7,9 @@
 
     <div class="tableCard">
         <mat-card>
-            <mat-spinner *ngIf="!loadedData" color="warn"></mat-spinner>
+            <mat-spinner *ngIf="!loadedData" color="warn" style="margin-top: 5em;"></mat-spinner>
 
-            <div class="upperArea">
+            <div class="upperArea" *ngIf="loadedData">
                 <mat-form-field appearance="outline" color="warn">
                     <mat-label>Search</mat-label>
                     <input matInput [formControl]="searchControl">
@@ -80,7 +80,7 @@
                       <!-- Birthdate Column -->
                       <ng-container matColumnDef="birthDate">
                         <th mat-header-cell *matHeaderCellDef> Birth Date </th>
-                        <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+                        <td mat-cell *matCellDef="let element"> {{formatDate(element.birthdate)}} </td>
                       </ng-container>
 
 
@@ -88,6 +88,12 @@
                       <ng-container matColumnDef="bloodType">
                         <th mat-header-cell *matHeaderCellDef> Blood Type </th>
                         <td mat-cell *matCellDef="let element"> {{element.bloodType}} </td>
+                      </ng-container>
+
+                      <!-- Action Column -->
+                      <ng-container matColumnDef="actions">
+                      <th mat-header-cell *matHeaderCellDef> Actions </th>
+                      <td mat-cell *matCellDef="let element"> <mat-icon (click)="edit(element)">edit</mat-icon> <mat-icon (click)="delete(element)" style="color: var(--main-red-color)">delete</mat-icon></td>
                       </ng-container>
 
 

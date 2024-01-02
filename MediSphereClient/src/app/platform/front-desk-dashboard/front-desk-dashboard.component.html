@@ -2,7 +2,7 @@
     <app-welcome-text></app-welcome-text>
     <div class="cardsArea">
         <div class="row3">
-            <mat-card>
+            <mat-card  (click)="toCreateAccount()" >
                 <mat-icon aria-hidden="false" aria-label="Icon label">add_circle</mat-icon>
                 <h1>Create Account</h1>
                 <p>Create a new account</p>
@@ -12,7 +12,7 @@
                 <h1>Manage Patients</h1>
                 <p>List all patients & check their details</p>
             </mat-card>
-            <mat-card (click)="toCreateAccount()">
+            <mat-card >
                 <mat-icon aria-hidden="false" aria-label="Icon label">calendar_month</mat-icon>
                 <h1>Manage Appointments</h1>
                 <p>Check current and upcoming appointments</p>

@@ -4,6 +4,6 @@ export interface UserDetails extends User {
     phone: string;
     address: string;
     gender: string;
-    birthDate: string;
+    birthdate: string;
     bloodType: string;
   }

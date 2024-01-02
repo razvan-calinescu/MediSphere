@@ -8,5 +8,5 @@ export interface UserDetailsTableModel {
     gender?: string;
     birthDate?: string;
     bloodType?: string;
-    role?: number;
+    role?: string;
 }

@@ -45,56 +45,58 @@
             justify-content: flex-start;
             align-items: center;
             flex-direction: column;
-            width: 80em;
+            width: 50em;
             max-height: 40em;
             min-height: 20em;
             box-shadow: 0 5px 15px rgba(37, 37, 37, 0.3);
             overflow-x: hidden;
+            overflow-y: hidden;
 
-           
-  
-                
-            .upperArea{
+            .fieldsArea{
                 display: flex;
-                width: 80em;
                 justify-content: flex-start;
-                margin-top: 1em;
-                gap: 17em;
-                padding-left: 10em;
-                overflow-x: hidden;
-                padding-top: 1em;
+                align-items: flex-start;
+                gap: 3em;
 
+                .custom-datepicker {
+                    position: absolute;
+                    margin-top: 20em;
+                }
 
-               
-            } 
-            
-            .lowerArea{
-    
+                .col{
+                    padding: 1em;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    gap: 1.2em;
+
+                    label {
+                        font-weight: 600;
+                    }
+
+      
+                    
+
+                }
+            }
+
+            .buttonArea{
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                flex-direction: column;
-                overflow-x: hidden;
-
-                table{
-                    width: 70em;
-                    padding-top: 2em;
-                    padding-bottom: 3em;
-                }
-
-                mat-paginator{
-                    width: 40em;
-                
-                }
+                margin-bottom: 2em;
 
             }
+
     
             
     
-             }
+        }
 
     }
 
+    
    
     
 }

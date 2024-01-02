@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { forkJoin, mergeMap, of } from 'rxjs';
@@ -8,6 +9,9 @@ import { UserDetails } from 'src/app/models/userDetails.model';
 import { UserDetailsTableModel } from 'src/app/models/userDetailsTable.model';
 import { AuthService } from 'src/services/auth.service';
 import { UserDetailsService } from 'src/services/userDetails.service';
+import { DeleteDialogComponent } from '../dialogs/delete-dialog/delete-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-accounts',
@@ -27,7 +31,10 @@ export class ListAccountsComponent implements OnInit, AfterViewInit{
 
   constructor(
     private authService: AuthService,
-    private userDetailsService: UserDetailsService
+    private userDetailsService: UserDetailsService,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar,
+    private router: Router
   ){
 
   }
@@ -37,7 +44,7 @@ export class ListAccountsComponent implements OnInit, AfterViewInit{
     const role = localStorage.getItem('userRole');
 
     if(role=='admin')
-      this.displayedColumns = ['role', 'cnp', 'name', 'email', 'phone'];
+      this.displayedColumns = ['role', 'cnp', 'name', 'email', 'phone', 'actions'];
     else if (role == 'frontDesk')
       this.displayedColumns = ['role','cnp', 'name', 'email', 'phone', 'address', 'birthDate' ];
     else if(role=='doctor'){
@@ -81,9 +88,9 @@ export class ListAccountsComponent implements OnInit, AfterViewInit{
       })
     ).subscribe(
       (combinedUsers: any) => {
-
-        if (localStorage.getItem('userRole') == 'doctor' || localStorage.getItem('userRole') == 'frontDesk') {
-          combinedUsers = combinedUsers.filter((user: any) => user.role === 'patient');
+        const role = localStorage.getItem('userRole')
+        if (role == 'doctor' || role == 'frontDesk') {
+          combinedUsers = combinedUsers.filter((user: any) => user.role.replace(/\s/g, "") == 'patient');
         }
   
         this.dataSource.data = combinedUsers;
@@ -97,7 +104,40 @@ export class ListAccountsComponent implements OnInit, AfterViewInit{
     );
   }
   
+  formatDate(date: string | number | Date) {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);  // Months are zero-based in JavaScript
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+  
+  
+    return [day, month, year].join('.');
+  }
+  
+  edit(element: any){
+    const routeCNP = element.cnp.replace(/\s/g, "");
+    const url = `newAccount/edit/${routeCNP}`;
+    this.router.navigateByUrl(url);
+  }
 
- 
+  delete(element: any){
+    this.openDialog(element);
+  }
+
+  openDialog(data: any) {
+
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '450px',
+      data: data 
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.deleteConfirmed == true)
+        {
+          this.snackbar.open("User deleted successfully", 'close', {duration: 4000})
+          this.loadData();
+        }
+    });
+  }
 
 }

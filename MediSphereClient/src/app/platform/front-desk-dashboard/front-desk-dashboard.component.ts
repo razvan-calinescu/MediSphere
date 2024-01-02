@@ -30,6 +30,6 @@ export class FrontDeskDashboardComponent implements OnInit{
  }
 
  toCreateAccount(): void {
-  this.router.navigateByUrl('newAccount')
+  this.router.navigateByUrl('newAccount/create')
 }
 }

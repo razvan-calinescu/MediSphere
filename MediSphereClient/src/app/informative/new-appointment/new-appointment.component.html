@@ -1,0 +1,85 @@
+<div class="tableContainer">
+
+    <div class="sectionTitle">
+        <h1>Schedule an Appointment</h1>
+        <p>Fill in the form below to create a new appointment</p>
+    </div>
+
+    <div class="tableCard">
+        <mat-card>
+          <div *ngIf="isLoading" style="margin-top: 4em">
+            <mat-spinner *ngIf="isLoading" color="warn"></mat-spinner>
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+            <div class="fieldsArea">
+                <div class="col">
+                    <label style="align-self: center;">Identification Data</label>
+                    <mat-form-field appearance="fill" color="warn" >
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="fName" [(ngModel)]="appointment.fName">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn" >
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lName" [(ngModel)]="appointment.lName">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Email Address</mat-label>
+                        <input matInput formControlName="email" [(ngModel)]="appointment.email">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput formControlName="phone" [(ngModel)]="appointment.phone">
+                    </mat-form-field>
+                </div>
+                <div class="col" >
+                    <label style="align-self: center;">Appointment Data</label>
+                    <mat-radio-group [(ngModel)]="formChoice" aria-label="Select an option" style="max-width: 18em;">
+                        <mat-radio-button (click)="changeOption('doctor')" color="warn" value="doctor">Choose the doctor</mat-radio-button>
+                        <mat-radio-button (click)="changeOption('specialty')" color="warn" value="specialty">Choose the specialty</mat-radio-button>
+                    </mat-radio-group>
+    
+                    <mat-form-field appearance="fill" color="warn" *ngIf="formChoice == 'doctor'">
+                        <mat-label>Doctor</mat-label>
+                        <mat-select formControlName="doctorId" [(ngModel)]="appointment.doctorId">
+                            <mat-option *ngFor="let pair of doctorSpecialtyPairs" [value]="pair.doctorCnp" >{{pair.text}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn" *ngIf="formChoice == 'specialty'">
+                        <mat-label>Specialty</mat-label>
+                        <mat-select formControlName="specialty" [(ngModel)]="appointment.specialty">
+                            <mat-option value="123">Cardiology</mat-option>
+                            <mat-option value="123">Pediatry</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field color="warn" style="width: 13.1em;">
+                        <mat-label>Date</mat-label>
+                        <input matInput formControlName="date" [(ngModel)]="appointment.date" [matDatepicker]="picker2" color="warn">
+                        <mat-datepicker-toggle color="warn" matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2 color="warn"></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Time</mat-label>
+                        <mat-select formControlName="time" [(ngModel)]="appointment.time">
+                            <mat-option value="patient">Patient</mat-option>
+                            <mat-option value="frontDesk">Front Desk Operator</mat-option>
+                            <mat-option value="doctor">Doctor</mat-option>
+                            <mat-option value="admin">System Administrator</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="buttonArea">
+                <button mat-raised-button color="warn" type="submit" >Send!</button>
+            </div>
+        </form>
+            
+          
+        
+        </mat-card>
+
+    </div>
+
+
+</div>

@@ -15,6 +15,7 @@ import { FrontDeskDashboardComponent } from './platform/front-desk-dashboard/fro
 import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
 import { ListAccountsComponent } from './platform/platform_shared/list-accounts/list-accounts.component';
 import { CreateAccountComponent } from './platform/platform_shared/create-account/create-account.component';
+import { NewAppointmentComponent } from './informative/new-appointment/new-appointment.component';
 
 const routes: Routes = [
   {
@@ -70,15 +71,17 @@ const routes: Routes = [
     component: ListAccountsComponent
   },
   {
-    path: 'newAccount',
+    path: 'newAccount/create',
     component: CreateAccountComponent
   },
-
-  // Uncomment and add a component for the 'portal' path if needed
-  // {
-  //   path: 'portal',
-  //   component: PortalComponent
-  // },
+  {
+    path: 'newAccount/edit/:cnp',
+    component: CreateAccountComponent
+  },
+  {
+    path: 'newAppointment',
+    component: NewAppointmentComponent
+  },
   {
     path: '**',
     component: PageNotFoundComponent

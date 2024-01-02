@@ -1,122 +1,116 @@
 <div class="tableContainer">
 
-    <div class="sectionTitle">
+    <div class="sectionTitle" *ngIf="mode=='create'">
         <h1>Create New Account</h1>
         <p>Fill in the form below to create a new account</p>
     </div>
 
+    <div class="sectionTitle" *ngIf="mode=='edit'">
+        <h1>Edit Account: {{user.fName}} {{user.lName}}</h1>
+        <p>Fill in the form below to edit the account</p>
+    </div>
+
     <div class="tableCard">
         <mat-card>
-            <form > <!-- [formGroup]="loginForm" (ngSubmit)="onSubmit()" -->
+          <div *ngIf="isLoading" style="margin-top: 4em">
+            <mat-spinner *ngIf="isLoading" color="warn"></mat-spinner>
+          </div>
 
-                <div class="fieldsArea">
-                    <div class="col">
-                    
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+            <div class="fieldsArea">
+                <div class="col">
                     <label style="align-self: center;">Identification Data</label>
-                              
-                  <mat-form-field appearance="fill" color="warn">
-                    <mat-label>CNP</mat-label>
-                    <input matInput formControlName="email">
-                  </mat-form-field>
-                              
-                    <mat-form-field appearance="fill" color="warn">
-                    <mat-label>Email Address</mat-label>
-                    <input matInput formControlName="email">
+                    <mat-form-field appearance="fill" color="warn" >
+                        <mat-label>CNP</mat-label>
+                        <input matInput formControlName="cnp" [(ngModel)]="user.cnp">
                     </mat-form-field>
-
-                    
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Email Address</mat-label>
+                        <input matInput formControlName="emailAddress" [(ngModel)]="user.email">
+                    </mat-form-field>
                     <mat-form-field appearance="fill" color="warn">
                         <mat-label>Role</mat-label>
-                        <mat-select formControlName="role" *ngIf="role=='admin'">
+                        <mat-select formControlName="role" [(ngModel)]="user.role" *ngIf="role=='admin'">
                             <mat-option value="patient">Patient</mat-option>
                             <mat-option value="frontDesk">Front Desk Operator</mat-option>
                             <mat-option value="doctor">Doctor</mat-option>
                             <mat-option value="admin">System Administrator</mat-option>
-
-                          </mat-select>
-                          <mat-select formControlName="role" *ngIf="role=='frontDesk'">
+                        </mat-select>
+                        <mat-select formControlName="role" [(ngModel)]="user.role" *ngIf="role=='frontDesk'">
                             <mat-option value="patient">Patient</mat-option>
-                          </mat-select>
-                      </mat-form-field>
-
-                          
-                    </div>
-                    <div class="col">
-
-                        <label style="align-self: center;">Personal Data</label>
-
-
-                        <mat-form-field appearance="fill" color="warn">
-                            <mat-label>First Name</mat-label>
-                            <input matInput formControlName="email">
-                          </mat-form-field>
-        
-                                
-                          <mat-form-field appearance="fill" color="warn">
-                            <mat-label>Last Name</mat-label>
-                            <input matInput formControlName="email">
-                          </mat-form-field>
-
-                          <mat-form-field appearance="fill" color="warn">
-                            <mat-label>Phone</mat-label>
-                            <input matInput formControlName="email">
-                          </mat-form-field>
-        
-                                
-                          <mat-form-field appearance="fill" color="warn">
-                            <mat-label>Address</mat-label>
-                            <input matInput formControlName="email">
-                          </mat-form-field>
-
-           
-
-
-
-                    </div>
-                    <div class="col">
-
-                        <label style="align-self: center;">Medical Data</label>
-
-
-                        <mat-form-field appearance="fill" color="warn">
-                            <mat-label>Gender</mat-label>
-                            <mat-select formControlName="email">
-                                <mat-option value="M">Male</mat-option>
-                                <mat-option value="F">Female</mat-option>
-                              </mat-select>
-                          </mat-form-field>
-
-                          <mat-form-field appearance="fill" color="warn">
-                            <mat-label>Blood Type</mat-label>
-                            <mat-select formControlName="bloodType">
-                                <mat-option value="0 RH-">0 RH-</mat-option>
-                                <mat-option value="0 RH+">0 RH+</mat-option>
-                                <mat-option value="A2 RH-">A2 RH-</mat-option>
-                                <mat-option value="A2 RH+">A2 RH+</mat-option>
-                                <mat-option value="B3 RH-">B3 RH-</mat-option>
-                                <mat-option value="B3 RH+">B3 RH+</mat-option>
-                                <mat-option value="AB4 RH-">AB4 RH-</mat-option>
-                                <mat-option value="AB4 RH+">AB4 RH+</mat-option>
-                              </mat-select>
-                          </mat-form-field>
-    
-                          <mat-form-field color="warn" style="width: 13.1em;">
-                            <mat-label>Birth Date</mat-label>
-                            <input matInput [matDatepicker]="picker2">
-                            <mat-hint>MM/DD/YYYY</mat-hint>
-                            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                            <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                          </mat-form-field>
-                    </div>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
+                <div class="col">
+                    <label style="align-self: center;">Personal Data</label>
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstName" [(ngModel)]="user.fName">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName" [(ngModel)]="user.lName">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Phone</mat-label>
+                        <input matInput formControlName="phone" [(ngModel)]="user.phone">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Address</mat-label>
+                        <input matInput formControlName="address" [(ngModel)]="user.address">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <label style="align-self: center;">Medical Data</label>
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender" [(ngModel)]="user.gender">
+                            <mat-option value="M">Male</mat-option>
+                            <mat-option value="F">Female</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn" *ngIf="user.role != 'doctor' ">
+                        <mat-label>Blood Type</mat-label>
+                        <mat-select formControlName="bloodType" [(ngModel)]="user.bloodType">
+                            <mat-option value="0 RH-">0 RH-</mat-option>
+                            <mat-option value="0 RH+">0 RH+</mat-option>
+                            <mat-option value="A2 RH-">A2 RH-</mat-option>
+                            <mat-option value="A2 RH+">A2 RH+</mat-option>
+                            <mat-option value="B3 RH-">B3 RH-</mat-option>
+                            <mat-option value="B3 RH+">B3 RH+</mat-option>
+                            <mat-option value="AB4 RH-">AB4 RH-</mat-option>
+                            <mat-option value="AB4 RH+">AB4 RH+</mat-option>
+                        </mat-select>
+                    </mat-form-field>
 
-     
-              
-              </form>
-            
-            <div class="buttonArea">
-                <button mat-raised-button color="warn" type="submit">Create!</button>
+                    <mat-form-field appearance="fill" color="warn" *ngIf="user.role == 'doctor' ">
+                        <mat-label>Specialty</mat-label>
+                        <mat-select formControlName="specialty" [(ngModel)]="doctorSpecialty">
+                            <mat-option value="Cardiology">Cardiology</mat-option>
+                            <mat-option value="Neurology">Neurology</mat-option>
+                            <mat-option value="Testing">Testing</mat-option>
+                            <mat-option value="General Surgery">General Surgery</mat-option>
+                            <mat-option value="Intensive Care Unit">Intensive Care Unit</mat-option>
+                            <mat-option value="Emergency / Trauma">Emergency / Trauma</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-form-field color="warn" style="width: 13.1em;">
+                        <mat-label>Birth Date</mat-label>
+                        <input matInput formControlName="birthDate" [(ngModel)]="user.birthDate" [matDatepicker]="picker2" color="warn">
+                        <mat-datepicker-toggle color="warn" matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2 color="warn"></mat-datepicker>
+                    </mat-form-field>
+                </div>
             </div>
+            <div class="buttonArea">
+                <button mat-raised-button color="warn" type="submit" *ngIf="mode=='create'">Create!</button>
+                <button mat-raised-button color="warn" type="submit" *ngIf="mode=='edit'">Save!</button>
+
+            </div>
+        </form>
+            
+          
         
         </mat-card>
 

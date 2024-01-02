@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card'
@@ -32,6 +33,8 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { PatientDashboardComponent } from './platform/patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './platform/doctor-dashboard/doctor-dashboard.component';
@@ -41,6 +44,10 @@ import { WelcomeTextComponent } from './platform/platform_shared/welcome-text/we
 import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
 import { ListAccountsComponent } from './platform/platform_shared/list-accounts/list-accounts.component';
 import { CreateAccountComponent } from './platform/platform_shared/create-account/create-account.component';
+import { DatePipe } from '@angular/common';
+import { DeleteDialogComponent } from './platform/platform_shared/dialogs/delete-dialog/delete-dialog.component';
+import { NewAppointmentComponent } from './informative/new-appointment/new-appointment.component';
+
 
 
 @NgModule({
@@ -63,7 +70,10 @@ import { CreateAccountComponent } from './platform/platform_shared/create-accoun
     WelcomeTextComponent,
     UnauthorisedComponent,
     ListAccountsComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    DeleteDialogComponent,
+    NewAppointmentComponent,
+
 
   ],
   imports: [
@@ -85,9 +95,12 @@ import { CreateAccountComponent } from './platform/platform_shared/create-accoun
     MatTableModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule,
+    MatRadioModule, 
+    FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
