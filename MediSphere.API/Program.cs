@@ -28,6 +28,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
 builder.Services.AddScoped<IDoctorSpecialtyRepository, DoctorSpecialtyRepository>();
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
 
 // JWT Authentication
@@ -45,6 +46,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<UsersDetailsService>();
 builder.Services.AddScoped<DoctorSpecialtyService>();
+builder.Services.AddScoped<AppointmentService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
