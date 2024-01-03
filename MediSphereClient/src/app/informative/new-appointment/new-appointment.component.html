@@ -48,8 +48,8 @@
                     <mat-form-field appearance="fill" color="warn" *ngIf="formChoice == 'specialty'">
                         <mat-label>Specialty</mat-label>
                         <mat-select formControlName="specialty" [(ngModel)]="appointment.specialty">
-                            <mat-option value="123">Cardiology</mat-option>
-                            <mat-option value="123">Pediatry</mat-option>
+                            <mat-option *ngFor="let specialty of specialities" [value]="specialty" >{{specialty}}</mat-option>
+
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field color="warn" style="width: 13.1em;">
@@ -58,13 +58,17 @@
                         <mat-datepicker-toggle color="warn" matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2 color="warn"></mat-datepicker>
                     </mat-form-field>
-                    <mat-form-field appearance="fill" color="warn">
+                    <p *ngIf="formChoice == 'doctor'  && !appointment.date && !ok">Please select date & doctor first!</p>
+                    <mat-form-field appearance="fill" color="warn"*ngIf="formChoice == 'doctor'  && appointment.date && ok" formControlName="time">
                         <mat-label>Time</mat-label>
-                        <mat-select formControlName="time" [(ngModel)]="appointment.time">
-                            <mat-option value="patient">Patient</mat-option>
-                            <mat-option value="frontDesk">Front Desk Operator</mat-option>
-                            <mat-option value="doctor">Doctor</mat-option>
-                            <mat-option value="admin">System Administrator</mat-option>
+                        <mat-select  formControlName="time" [(ngModel)]="appointment.time">
+                            <mat-option *ngFor="let timeSlot of timeOptions" [value]="timeSlot">{{timeSlot}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field  *ngIf="formChoice == 'specialty' " appearance="fill" color="warn">
+                        <mat-label>Time</mat-label>
+                        <mat-select  formControlName="time" [(ngModel)]="appointment.time">
+                            <mat-option *ngFor="let timeSlot of timeOptions" [value]="timeSlot">{{timeSlot}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>

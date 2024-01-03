@@ -4,10 +4,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DoctorSpecialtyService } from 'src/services/doctorSpecialty.service';
-import { mergeMap, catchError, throwError } from 'rxjs';
+import { mergeMap, catchError, throwError, combineLatest } from 'rxjs';
 import { Appointment } from 'src/app/models/appointment.model';
 import { UserDetailsTableModel } from 'src/app/models/userDetailsTable.model';
 import { AuthService } from 'src/services/auth.service';
+import { AppointmentService } from 'src/services/appointment.service';
+
 
 export interface doctorSpecialtyForm{
   text?: string,
@@ -26,8 +28,10 @@ export class NewAppointmentComponent {
   public appointment: Appointment = {};
   loginForm!: FormGroup;
   public isLoading: boolean = false;
-  public specialities: string[] = []
-  public doctorSpecialtyPairs: doctorSpecialtyForm[] = []
+  public specialities: string[] = [];
+  public doctorSpecialtyPairs: doctorSpecialtyForm[] = [];
+  public timeOptions: string[] = [];
+  public ok: boolean = false;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -35,7 +39,8 @@ export class NewAppointmentComponent {
     public router: Router,
     public datePipe: DatePipe,
     public doctorSpecialtyService: DoctorSpecialtyService,
-    public authService: AuthService
+    public authService: AuthService,
+    public appointmentService: AppointmentService
   ) {}
 
   ngOnInit() {
@@ -52,12 +57,40 @@ export class NewAppointmentComponent {
       time: [this.appointment.time, Validators.required],
     });
 
+    this.subscribeToFormChanges();
+  }
+
+  subscribeToFormChanges() {
+  
+    combineLatest([
+      this.loginForm.get('doctorId')!.valueChanges,
+      this.loginForm.get('date')!.valueChanges
+    ]).subscribe(([doctorId, date]) => {
+      if (doctorId && date) {
+
+        console.log(doctorId)
+        this.loadTimes(doctorId, date)
+      }
+    });
+  }
+
+  loadTimes(doctorId: any, date: any){
+    date= this.formatDate(date)
+    this.appointmentService.appointmentAvailableSlotsDoctorIdDateGet(doctorId, date).subscribe(
+      (times) => {
+        this.timeOptions = times
+        this.ok = true;
+
+      }
+    )
   }
 
  async loadData(){
+    this.isLoading = true;
     await this.doctorSpecialtyService.doctorSpecialtyGet().subscribe(
       (specialties) => {
         specialties.forEach((specialty) => {
+          if(!this.specialities.includes(specialty.specialty))
           this.specialities.push(specialty.specialty)
           let cnp = specialty.cnp.replace(/\s/g, "")
           this.authService.authUserCnpGet(cnp).subscribe(
@@ -70,11 +103,17 @@ export class NewAppointmentComponent {
 
               this.doctorSpecialtyPairs.push(pairToAdd)
               }
+              this.isLoading = false;
             }
           )
         })
       }
     )
+
+    await this.appointmentService.appointmentAvailableSlotsDoctorIdDateGet("0000", "2024-01-02").subscribe(
+      (times) => this.timeOptions = times
+    )
+
 
   }
 
@@ -102,7 +141,7 @@ export class NewAppointmentComponent {
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
   
-    return [day, month, year].join('.');
+    return [year, month, day].join('-');
   }
 
   changeOption(mode: string){
