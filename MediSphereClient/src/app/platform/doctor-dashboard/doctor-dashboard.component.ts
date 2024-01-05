@@ -24,6 +24,10 @@ export class DoctorDashboardComponent implements OnInit{
 
   }
 
+  toAppointmentsList(): void {
+    this.router.navigateByUrl('listAppointments')
+ }
+
   toAccountList(): void {
     this.router.navigateByUrl('listAccounts')
  }

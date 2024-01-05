@@ -9,6 +9,7 @@ export interface Appointment{
     time?: any,
     dateTime?: any,
     status?: string,
-    specialty?: string
+    specialty?: string,
+    doctorName?: string
 
 }

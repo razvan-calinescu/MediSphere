@@ -47,6 +47,8 @@ import { CreateAccountComponent } from './platform/platform_shared/create-accoun
 import { DatePipe } from '@angular/common';
 import { DeleteDialogComponent } from './platform/platform_shared/dialogs/delete-dialog/delete-dialog.component';
 import { NewAppointmentComponent } from './informative/new-appointment/new-appointment.component';
+import { AppointmentsTableComponent } from './platform/platform_shared/appointments-table/appointments-table.component';
+import { AllocateDoctorDialogComponent } from './platform/platform_shared/dialogs/allocate-doctor-dialog/allocate-doctor-dialog.component';
 
 
 
@@ -73,6 +75,8 @@ import { NewAppointmentComponent } from './informative/new-appointment/new-appoi
     CreateAccountComponent,
     DeleteDialogComponent,
     NewAppointmentComponent,
+    AppointmentsTableComponent,
+    AllocateDoctorDialogComponent,
 
 
   ],

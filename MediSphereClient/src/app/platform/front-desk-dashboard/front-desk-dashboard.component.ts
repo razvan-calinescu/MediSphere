@@ -29,6 +29,10 @@ export class FrontDeskDashboardComponent implements OnInit{
  
  }
 
+ toAppointmentsList(): void {
+    this.router.navigateByUrl('listAppointments')
+ }
+
  toCreateAccount(): void {
   this.router.navigateByUrl('newAccount/create')
 }

@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Doctor Allocation</h1>
+<div mat-dialog-content>
+    <mat-spinner *ngIf="isLoading" color="warn"></mat-spinner>
+<div *ngIf="!isLoading">
+    <form [formGroup]="doctorForm">
+        <h1 mat-dialog-title>Doctor Allocation</h1>
+        <div mat-dialog-content>
+            <mat-spinner *ngIf="isLoading" color="warn"></mat-spinner>
+            <div *ngIf="!isLoading">
+                <h2>Select the doctor from the list below</h2>
+                <mat-select formControlName="doctorId">
+                    <mat-option *ngFor="let pair of doctorSpecialtyPairs" [value]="pair.doctorCnp">{{pair.text}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div mat-dialog-actions *ngIf="!isLoading">
+            <button mat-button mat-dialog-close (click)="onCancelClick()">Cancel</button>
+            <button mat-button type="submit" (click)="confirmDoctor()">Confirm</button>
+        </div>
+    </form>
+    
+</div>
+</div>

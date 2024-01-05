@@ -1,0 +1,115 @@
+<div class="tableContainer">
+
+    <div class="sectionTitle">
+        <h1>Appointments</h1>
+        <p>The list below contains active appointments</p>
+    </div>
+
+    <div class="tableCard">
+        <mat-card>
+            <mat-spinner *ngIf="!loadedData" color="warn" style="margin-top: 5em;"></mat-spinner>
+
+            <div class="upperArea" *ngIf="loadedData">
+                <div class="fieldsArea"  >
+                <mat-form-field appearance="outline" color="warn" style="width: 13.1em; margin-right:2em">
+                    <mat-label>Search</mat-label>
+                    <input matInput [formControl]="searchControl">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+
+                  <mat-form-field color="warn" appearance="outline" style="width: 13.1em;">
+                    <mat-label>Date</mat-label>
+                    <input matInput formControlName="date" [formControl]="dateControl"  [matDatepicker]="picker2" color="warn">
+                    <mat-datepicker-toggle color="warn" matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 color="warn"></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <mat-paginator #paginator [length]="totalRecords"
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 20]"
+            (page)="onPageChange($event)"
+            showFirstLastButtons
+            aria-label="Select page of appointments" color="warn" *ngIf="loadedData">
+</mat-paginator>
+
+            </div>
+          
+
+            <div class="lowerArea" >
+                <div>
+                   <!-- this.displayedColumns = ['id', 'date', 'time', 'doctor', 'name', 'email', 'phone', 'email', 'status', 'actions']; -->
+                    <table mat-table [dataSource]="dataSource" *ngIf="loadedData">
+
+                      <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> App.Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                      </ng-container>
+
+                  
+                      <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="time">
+                        <th mat-header-cell *matHeaderCellDef> Time </th>
+                        <td mat-cell *matCellDef="let element" > {{element.time}} </td>
+                        </ng-container>
+                  
+                      <ng-container matColumnDef="doctor">
+                        <th mat-header-cell *matHeaderCellDef> Doctor </th>
+                        <!-- <td mat-cell *matCellDef="let element"> {{element.doctorName}}</td> -->
+                        <td mat-cell *matCellDef="let element" > <p *ngIf="element.status != 'requested'">{{element.doctorName}}</p><p *ngIf="element.status == 'requested'" (click)="allocateDoctor(element)" style="font-weight: 600">Allocate Doctor</p> </td>
+
+                      </ng-container>
+
+                      
+                           <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.fName}} {{element.lName}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="email">
+                            <th mat-header-cell *matHeaderCellDef> Email </th>
+                            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                          </ng-container>
+
+                      <ng-container matColumnDef="phone">
+                        <th mat-header-cell *matHeaderCellDef> Phone No. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                        <td mat-cell *matCellDef="let element" 
+                            [ngClass]="{
+                              'status-requested': element.status === 'requested',
+                              'status-confirmed': element.status === 'confirmed',
+                              'status-in-progress': element.status === 'in progress',
+                              'status-done': element.status === 'done'
+                            }">{{element.status}}</td>
+                      </ng-container>
+                      
+                      
+
+                      <ng-container matColumnDef="actions">
+                      <th mat-header-cell *matHeaderCellDef> Actions </th>
+                      <td mat-cell *matCellDef="let element"> <!-- <mat-icon (click)="edit(element)">edit</mat-icon> --> <mat-icon (click)="delete(element)" style="color: var(--main-red-color)">delete</mat-icon></td>
+                      </ng-container>
+
+
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  
+                    
+                  </div>
+            </div>
+        </mat-card>
+
+    </div>
+
+
+</div>

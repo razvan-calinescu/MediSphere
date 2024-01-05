@@ -24,10 +24,7 @@ export class DeleteDialogComponent implements OnInit{
   }
 
   confirmDelete(): void {
-    this.authService.authDeleteUserCnpDelete(this.data.cnp).subscribe(
-      () => console.log("finished deleting"),
-      (err) => console.log("error")
-    );
+  
     this.dialogRef.close({ deleteConfirmed: true });
   }
 }

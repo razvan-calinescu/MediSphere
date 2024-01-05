@@ -1,0 +1,121 @@
+
+.tableContainer{
+
+    margin-top: -3em;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .sectionTitle{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 2em;
+
+        h1{
+            margin-top: 2em;
+            margin-bottom: .2em;
+            font-weight: 600;
+            font-size: 1.7em;
+            color: var(--main-black-color);
+        }
+
+        p{
+            margin-top: .5em;
+            margin-bottom: .5em;
+            font-weight: 400;
+            font-size: 1em;
+            color: var(--gray-text-color);
+
+        }
+    }
+
+
+
+
+    .tableCard{
+        
+        mat-card{
+
+      
+            display:flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            width: 80em;
+            max-height: 40em;
+            min-height: 20em;
+            box-shadow: 0 5px 15px rgba(37, 37, 37, 0.3);
+            overflow-x: hidden;
+
+           
+  
+                
+            .upperArea{
+                display: flex;
+                width: 80em;
+                justify-content: flex-start;
+                margin-top: 1em;
+                gap: 3em;
+                padding-left: 10em;
+                overflow-x: hidden;
+                padding-top: 1em;
+
+                .fieldsArea{
+                    
+                }
+
+
+               
+            } 
+            
+            .lowerArea{
+    
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                overflow-x: hidden;
+
+                table{
+                    width: 70em;
+                    padding-top: 2em;
+                    padding-bottom: 3em;
+
+                    .status-requested {
+                        color: red;
+                      }
+                      
+                      .status-confirmed {
+                        color: green;
+                      }
+                      
+                      .status-in-progress {
+                        color: black;
+                      }
+                      
+                      .status-done {
+                        color: darkgreen;
+                      }
+                      
+                }
+
+                mat-paginator{
+                    width: 40em;
+                
+                }
+
+            }
+    
+            
+    
+             }
+
+    }
+
+   
+    
+}

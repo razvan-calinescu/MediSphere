@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { DoctorSpecialtyService } from 'src/services/doctorSpecialty.service';
 import { mergeMap, catchError, throwError, combineLatest } from 'rxjs';
 import { Appointment } from 'src/app/models/appointment.model';
@@ -32,6 +32,7 @@ export class NewAppointmentComponent {
   public doctorSpecialtyPairs: doctorSpecialtyForm[] = [];
   public timeOptions: string[] = [];
   public ok: boolean = false;
+  public timeOptionsDoctors: string[] = [];
 
   constructor(
     public formBuilder: FormBuilder,
@@ -40,11 +41,13 @@ export class NewAppointmentComponent {
     public datePipe: DatePipe,
     public doctorSpecialtyService: DoctorSpecialtyService,
     public authService: AuthService,
-    public appointmentService: AppointmentService
+    public appointmentService: AppointmentService,
+    public snackbar: MatSnackBar,
   ) {}
 
   ngOnInit() {
 
+    this.appointment.doctorId = 'null'
     this.loadData()
     
     this.loginForm = this.formBuilder.group({
@@ -52,7 +55,8 @@ export class NewAppointmentComponent {
       lName: [this.appointment.lName, Validators.required],
       email: [this.appointment.email, [Validators.required, Validators.email]],
       phone: [this.appointment.phone, Validators.required],
-      doctorId: [this.appointment.doctorId, Validators.required],
+      doctorId: [this.appointment.doctorId],
+      specialty: [this.appointment.specialty],
       date: [this.appointment.date, Validators.required],
       time: [this.appointment.time, Validators.required],
     });
@@ -68,22 +72,46 @@ export class NewAppointmentComponent {
     ]).subscribe(([doctorId, date]) => {
       if (doctorId && date) {
 
-        console.log(doctorId)
+
         this.loadTimes(doctorId, date)
       }
     });
+
+    
   }
 
   loadTimes(doctorId: any, date: any){
     date= this.formatDate(date)
     this.appointmentService.appointmentAvailableSlotsDoctorIdDateGet(doctorId, date).subscribe(
       (times) => {
-        this.timeOptions = times
+        this.timeOptionsDoctors = times
         this.ok = true;
 
       }
     )
   }
+
+  combineDateAndTime(dateString: any, timeString: any) {
+    // Parse the date
+    const date = new Date(dateString);
+
+    // Extract hours and minutes from the time string
+    const [hours, minutes] = timeString.split(':').map(Number);
+
+    // Set hours and minutes for the date
+    date.setHours(hours, minutes, 0, 0);
+
+    // Format the date manually to avoid UTC conversion
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const hour = date.getHours().toString().padStart(2, '0');
+    const minute = date.getMinutes().toString().padStart(2, '0');
+    const second = date.getSeconds().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+}
+
 
  async loadData(){
     this.isLoading = true;
@@ -121,9 +149,38 @@ export class NewAppointmentComponent {
     if (this.loginForm.valid) {
       this.isLoading = true;
 
-      this.appointment.status='confirmed'
-      console.log(this.appointment)
+      let currentSystemDate = new Date();
 
+      let appointmentDate = new Date(this.appointment.date);
+  
+      currentSystemDate.setDate(currentSystemDate.getDate() + 2);
+  
+      if(appointmentDate <= currentSystemDate) {
+        this.snackBarService.open("Online appointment must be scheduled at least 2 days in advance", 'close', {duration: 3000})
+        this.isLoading = false;
+      }
+      else{
+      if(this.appointment.doctorId == 'null')
+        this.appointment.status = 'requested'
+      else{
+        this.appointment.status='confirmed'
+        const pair = this.doctorSpecialtyPairs.filter( (doctor) => doctor.doctorCnp == this.appointment.doctorId)
+        this.appointment.specialty = pair[0].doctorSpecialty
+      }
+
+      this.appointment.dateTime = this.combineDateAndTime(this.appointment.date, this.appointment.time)
+      console.log(this.appointment.dateTime)
+      this.appointment.date = this.appointment.dateTime
+
+      this.appointmentService.appointmentPost(this.appointment).subscribe(
+        (success) => {
+          this.isLoading = false;
+          this.snackBarService.open("Appointment created!", 'close', {duration: 3000})
+          this.router.navigateByUrl('')
+        }
+
+      )
+      }
     }
     
     else {

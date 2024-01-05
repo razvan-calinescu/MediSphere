@@ -134,7 +134,15 @@ export class ListAccountsComponent implements OnInit, AfterViewInit{
     dialogRef.afterClosed().subscribe(result => {
       if(result.deleteConfirmed == true)
         {
-          this.snackbar.open("User deleted successfully", 'close', {duration: 4000})
+          this.authService.authDeleteUserCnpDelete(data.cnp).subscribe(
+            () => {
+              console.log("finished deleting")
+              this.loadData();
+              this.ngAfterViewInit();
+            },
+            (err) => console.log("error")
+          );
+       
           this.loadData();
         }
     });

@@ -16,6 +16,7 @@ import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.compon
 import { ListAccountsComponent } from './platform/platform_shared/list-accounts/list-accounts.component';
 import { CreateAccountComponent } from './platform/platform_shared/create-account/create-account.component';
 import { NewAppointmentComponent } from './informative/new-appointment/new-appointment.component';
+import { AppointmentsTableComponent } from './platform/platform_shared/appointments-table/appointments-table.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,10 @@ const routes: Routes = [
   {
     path: 'newAppointment',
     component: NewAppointmentComponent
+  },
+  {
+    path: 'listAppointments',
+    component: AppointmentsTableComponent
   },
   {
     path: '**',
