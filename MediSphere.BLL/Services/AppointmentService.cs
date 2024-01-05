@@ -42,9 +42,26 @@ namespace MediSphere.BLL.Services
             await _repository.AddAsync(appointment);
         }
 
-        public async Task UpdateAppointmentAsync(Appointment appointment)
+        public async Task UpdateAppointmentAsync(Appointment updatedAppointment)
         {
-            await _repository.UpdateAsync(appointment);
+            var existingAppointment = await _repository.GetByIdAsync(updatedAppointment.Id);
+            if (existingAppointment != null)
+            {
+                existingAppointment.DoctorId = updatedAppointment.DoctorId;
+                existingAppointment.Date = updatedAppointment.Date;
+                existingAppointment.Status = updatedAppointment.Status;
+                existingAppointment.FName = updatedAppointment.FName;
+                existingAppointment.LName = updatedAppointment.LName;
+                existingAppointment.Phone = updatedAppointment.Phone;
+                existingAppointment.Email = updatedAppointment.Email;
+                existingAppointment.Specialty = updatedAppointment.Specialty;
+
+                await _repository.UpdateAsync(existingAppointment);
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Appointment with ID {updatedAppointment.Id} not found.");
+            }
         }
 
         public async Task DeleteAppointmentAsync(int id)
