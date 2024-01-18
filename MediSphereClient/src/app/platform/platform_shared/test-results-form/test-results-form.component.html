@@ -1,0 +1,109 @@
+<div class="tableContainer">
+
+    <div class="sectionTitle">
+        <h1>Add Test Results</h1>
+        <p>Fill in the form below to add test results</p>
+    </div>
+
+    <div class="tableCard">
+        <mat-card>
+          <div *ngIf="isLoading" style="margin-top: 4em">
+            <mat-spinner *ngIf="isLoading" color="warn"></mat-spinner>
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+            <div class="fieldsArea">
+                <div class="col">
+                    <label style="align-self: center;">General Test Data</label>
+                    <mat-radio-group [(ngModel)]="test" aria-label="Select an option" style="max-width: 18em;">
+                        <mat-radio-button (click)="changeOption('covid')" color="warn" value="covid">Sars-CoV-2</mat-radio-button>
+                        <mat-radio-button (click)="changeOption('blood')" color="warn" value="blood">Blood</mat-radio-button>
+                    </mat-radio-group>
+
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Patient</mat-label>
+                        <mat-select  formControlName="patientId" [(ngModel)]="patientId">
+                            <mat-option *ngFor="let patientPair of patientNameEmailsPair" [value]="patientPair.id">{{patientPair.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col"  *ngIf="test == 'covid'">
+
+      
+                        <mat-form-field appearance="fill" color="warn" >
+                            <mat-label>Antigen</mat-label>
+                            <mat-select formControlName="antigen" [(ngModel)]="covidTestResult.antigen">
+                                <mat-option value="0">Did not test</mat-option>
+                                <mat-option value="1">Positive</mat-option>
+                                <mat-option value="1">Negative</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" color="warn">
+                            <mat-label>PCR</mat-label>
+                            <mat-select formControlName="pcr" [(ngModel)]="covidTestResult.pcr">
+                                <mat-option value="0">Did not test</mat-option>
+                                <mat-option value="1">Positive</mat-option>
+                                <mat-option value="1">Negative</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+          
+                    <div  class="col" *ngIf="test == 'blood'">
+                        <mat-form-field appearance="fill" color="warn">
+                            <mat-label>Hemoglobine HGB</mat-label>
+                            <input matInput formControlName="hgb" [(ngModel)]="bloodTestResult.hgb">
+                            <div class="range-info">Range: 12.1 - 17.2 g/dL</div>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="fill" color="warn">
+                            <mat-label>Red Blood Cells RBC</mat-label>
+                            <input matInput formControlName="rbc" [(ngModel)]="bloodTestResult.rbc">
+                            <div class="range-info">Range: 4.2 - 6.1 million cells/µL</div>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="fill" color="warn">
+                            <mat-label>White Blood Cells WBC</mat-label>
+                            <input matInput formControlName="wbc" [(ngModel)]="bloodTestResult.wbc">
+                            <div class="range-info">Range: 4500 - 11000 cells/µL</div>
+                        </mat-form-field>
+                        
+                        
+                        
+                    </div>
+
+                       
+                    <div  class="col" *ngIf="test == 'blood'">
+                    
+                        <mat-form-field appearance="fill" color="warn">
+                            <mat-label>Platelet Count PLT</mat-label>
+                            <input matInput formControlName="plt" [(ngModel)]="bloodTestResult.plt">
+                            <div class="range-info">Range: 150000 - 450000 platelets/µL</div>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="fill" color="warn">
+                            <mat-label>Mean Corpuscular Volume MCV</mat-label>
+                            <input matInput formControlName="mcv" [(ngModel)]="bloodTestResult.mcv">
+                            <div class="range-info">Range: 80 - 96 fL</div>
+                        </mat-form-field>
+                        
+                    </div>
+             
+     
+                </div>
+                
+            
+            
+            <div class="buttonArea">
+                <button mat-raised-button color="warn" type="submit">Upload!</button>
+
+            </div>
+        </form>
+            
+          
+        
+        </mat-card>
+
+    </div>
+
+
+</div>

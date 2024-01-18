@@ -1,0 +1,101 @@
+<div class="tableContainer">
+
+    <div class="sectionTitle">
+        <h1>Documents</h1>
+        <p>The list below contains your documents issued by our doctors</p>
+    </div>
+
+    <div class="tableCard">
+        <mat-card>
+            <mat-spinner *ngIf="!loadedData" color="warn" style="margin-top: 5em;"></mat-spinner>
+
+            <div class="upperArea" *ngIf="loadedData">
+                <div class="fieldsArea"  >
+                <mat-form-field appearance="outline" color="warn" style="width: 13.1em; margin-right:2em">
+                    <mat-label>Search</mat-label>
+                    <input matInput [formControl]="searchControl">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+
+                  <mat-form-field color="warn" appearance="outline" style="width: 13.1em;">
+                    <mat-label>Date</mat-label>
+                    <input matInput formControlName="date" [formControl]="dateControl"  [matDatepicker]="picker2" color="warn">
+                    <mat-datepicker-toggle color="warn" matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 color="warn"></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <mat-paginator #paginator [length]="totalRecords"
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 20]"
+            (page)="onPageChange($event)"
+            showFirstLastButtons
+            aria-label="Select page of appointments" color="warn" *ngIf="loadedData">
+</mat-paginator>
+
+            </div>
+          
+
+            <div class="lowerArea" >
+                <div>
+                    <table mat-table [dataSource]="dataSource" *ngIf="loadedData">
+
+                      <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> Doc.Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                      </ng-container>
+
+                      
+                      <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef> Type </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf="element.documentType=='prescription'">
+                            Prescription
+                            </div>
+                            <div *ngIf="element.documentType=='note'">
+                            Consultation Note
+                            </div>
+                        </td>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="title">
+                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="issued">
+                        <th mat-header-cell *matHeaderCellDef> Issued </th>
+                        <td mat-cell *matCellDef="let element"> {{element.issued}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="text">
+                        <th mat-header-cell *matHeaderCellDef> Contents </th>
+                        <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="doctor">
+                        <th mat-header-cell *matHeaderCellDef> Doctor </th>
+                        <td mat-cell *matCellDef="let element"> {{getDoctorName(element.doctorId)}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let element"> <mat-icon (click)="generatePdf(element)">download</mat-icon></td>
+                        </ng-container>
+  
+
+
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  
+                    
+                  </div>
+            </div>
+        </mat-card>
+
+    </div>
+
+
+</div>

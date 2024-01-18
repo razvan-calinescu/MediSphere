@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("userFName", fName);
           const role = user.role.replace(/\s/g, ""); ///removing witespaces from role
           localStorage.setItem("userRole", role);
+          localStorage.setItem("userId", user.cnp)
           this.loginMonitor.updateLoginStatus(); // Update the login state for service & topbar
           this.isLoading = false;
           

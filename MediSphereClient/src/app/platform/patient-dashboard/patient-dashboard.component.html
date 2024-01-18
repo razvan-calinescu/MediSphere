@@ -2,20 +2,20 @@
     <app-welcome-text></app-welcome-text>
     <div class="cardsArea">
         <div class="row3">
-            <mat-card>
+            <mat-card (click)="toDocuments()">
                 <mat-icon aria-hidden="false" aria-label="Icon label">note_add</mat-icon>
                 <h1>Check Documents</h1>
                 <p>See all recent prescriptions and notes issued after consultations</p>
             </mat-card>
-            <mat-card>
-                <mat-icon aria-hidden="false" aria-label="Icon label">science</mat-icon>
-                <h1>Check Recent Results</h1>
-                <p>List all test results</p>
+            <mat-card (click)="toResults()">
+                <mat-icon aria-hidden="false" aria-label="Icon label">coronavirus</mat-icon>
+                <h1>COVID Test Results</h1>
+                <p>List COVID test results</p>
             </mat-card>
-            <mat-card>
-                <mat-icon aria-hidden="false" aria-label="Icon label">calendar_month</mat-icon>
-                <h1>Manage Appointments</h1>
-                <p>Check current and upcoming appointments</p>
+            <mat-card (click)="toResultsBlood()">
+                <mat-icon aria-hidden="false" aria-label="Icon label">science</mat-icon>
+                <h1>Blood Test Results</h1>
+                <p>List blood test results</p>
             </mat-card>
         </div>
     </div>

@@ -14,17 +14,17 @@
             </mat-card>
         </div>
         <div class="row3">
-            <mat-card>
+            <mat-card (click)="toPrescription()">
                 <mat-icon aria-hidden="false" aria-label="Icon label">note_add</mat-icon>
                 <h1>Add Prescription</h1>
                 <p>Issue a new prescription for a patient</p>
             </mat-card>
-            <mat-card>
+            <mat-card (click)="toNote()">
                 <mat-icon aria-hidden="false" aria-label="Icon label">receipt_long</mat-icon>
                 <h1>Add Consultation Note</h1>
                 <p>Issue consultation notes for a patient</p>
             </mat-card>
-            <mat-card>
+            <mat-card (click)="toTestResults()">
                 <mat-icon aria-hidden="false" aria-label="Icon label">biotech</mat-icon>
                 <h1>Add Test Results</h1>
                 <p>Upload test results for a patient</p>

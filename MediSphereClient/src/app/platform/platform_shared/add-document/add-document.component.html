@@ -1,0 +1,52 @@
+<div class="tableContainer">
+
+    <div class="sectionTitle" *ngIf="mode=='prescription'">
+        <h1>Add New Prescription</h1>
+        <p>Fill in the form below to generate a new prescription</p>
+    </div>
+
+    <div class="sectionTitle" *ngIf="mode=='note'">
+        <h1>Add New Consultation Note</h1>
+        <p>Fill in the form below to generate a new consultation note</p>
+    </div>
+
+    <div class="tableCard">
+        <mat-card>
+          <div *ngIf="isLoading" style="margin-top: 4em">
+            <mat-spinner *ngIf="isLoading" color="warn"></mat-spinner>
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+            <div class="fieldsArea">
+                <div class="col">
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Patient</mat-label>
+                        <mat-select formControlName="patientId" [(ngModel)]="document.patientId">
+                            <mat-option *ngFor="let patientPair of patientNameEmailsPair" [value]="patientPair.id">{{patientPair.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn" >
+                        <mat-label>Title</mat-label>
+                        <input matInput formControlName="title" [(ngModel)]="document.title">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="warn">
+                        <mat-label>Text</mat-label>
+                        <textarea matInput  formControlName="text" [(ngModel)]="document.text"></textarea>
+                    </mat-form-field>
+         
+                </div>
+            </div>
+            <div class="buttonArea">
+                <button mat-raised-button color="warn" type="submit">Save!</button>
+
+            </div>
+        </form>
+            
+          
+        
+        </mat-card>
+
+    </div>
+
+
+</div>

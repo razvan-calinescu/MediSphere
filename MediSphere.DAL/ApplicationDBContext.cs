@@ -20,6 +20,11 @@ namespace MediSphere.DAL
         public DbSet<UsersDetails> UsersDetails { get; set; }
         public DbSet<DoctorSpecialities> DoctorSpecialties { get; set; }
         public DbSet<Appointment> appointments { get; set; }
+        public DbSet<DocumentData> documentData { get; set; }
+
+        public DbSet<CovidTestResult> covidTestResults { get; set; }
+
+        public DbSet<BloodTestResult> BloodTestResults { get; set; }
 
 
     }

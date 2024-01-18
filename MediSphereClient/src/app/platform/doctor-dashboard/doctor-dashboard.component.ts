@@ -31,4 +31,16 @@ export class DoctorDashboardComponent implements OnInit{
   toAccountList(): void {
     this.router.navigateByUrl('listAccounts')
  }
+
+ toPrescription(): void{
+    this.router.navigateByUrl('createDocument/prescription')
+ }
+
+ toNote(): void{
+  this.router.navigateByUrl('createDocument/note')
+}
+
+toTestResults(): void{
+  this.router.navigateByUrl('addTestResults')
+}
 }

@@ -47,7 +47,7 @@ export class AppointmentsTableComponent {
     const role = localStorage.getItem('userRole');
 
     if (role == 'doctor')
-      this.displayedColumns = ['id', 'date', 'time', 'name', 'email', 'phone', 'email', 'status'];
+      this.displayedColumns = ['id', 'date', 'time', 'name', 'email', 'phone', 'email', 'status', 'doctorActions'];
     else if (role == 'frontDesk')
       this.displayedColumns = ['id', 'date', 'time', 'doctor', 'name', 'email', 'phone', 'email', 'status', 'actions'];
 
@@ -100,6 +100,7 @@ export class AppointmentsTableComponent {
           let { date, time } = this.extractDateAndTime(appointment.date);
           appointment.date = date;
           appointment.time = time;
+          
   
           if (appointment.doctorId) {
             this.authService.authUserCnpGet(appointment.doctorId).subscribe(
@@ -107,6 +108,10 @@ export class AppointmentsTableComponent {
             );
           }
         });
+
+        if(localStorage.getItem('userRole') == 'doctor'){
+          this.appointments = this.appointments.filter((appointment) => appointment.doctorId == localStorage.getItem('userId'))
+        }
   
         this.totalRecords = this.appointments.length;
         this.loadedData = true;
@@ -240,6 +245,15 @@ combineDateAndTime(dateString: any, timeString: any) {
   const second = date.getSeconds().toString().padStart(2, '0');
 
   return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+}
+
+setStatus(data: any, status: string){
+  data.status = status
+  data.date= this.combineDateAndTime(data.date, data.time)
+    this.appointmentService.appointmentIdPut(data.id, data).subscribe(
+      (result) => this.snackbar.open("Patient "+data.fName + " "+ data.lName + " is set to "+ data.status, 'close', {duration: 3000}),
+      (err) => console.log(err)
+    )
 }
 
 }

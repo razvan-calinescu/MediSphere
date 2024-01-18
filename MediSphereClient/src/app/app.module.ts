@@ -49,6 +49,11 @@ import { DeleteDialogComponent } from './platform/platform_shared/dialogs/delete
 import { NewAppointmentComponent } from './informative/new-appointment/new-appointment.component';
 import { AppointmentsTableComponent } from './platform/platform_shared/appointments-table/appointments-table.component';
 import { AllocateDoctorDialogComponent } from './platform/platform_shared/dialogs/allocate-doctor-dialog/allocate-doctor-dialog.component';
+import { AddDocumentComponent } from './platform/platform_shared/add-document/add-document.component';
+import { DocumentsTableComponent } from './platform/platform_shared/documents-table/documents-table.component';
+import { TestResultsFormComponent } from './platform/platform_shared/test-results-form/test-results-form.component';
+import { ResultsTableComponent } from './platform/platform_shared/results-table/results-table.component';
+import { BloodResultsTableComponent } from './platform/platform_shared/blood-results-table/blood-results-table.component';
 
 
 
@@ -77,6 +82,11 @@ import { AllocateDoctorDialogComponent } from './platform/platform_shared/dialog
     NewAppointmentComponent,
     AppointmentsTableComponent,
     AllocateDoctorDialogComponent,
+    AddDocumentComponent,
+    DocumentsTableComponent,
+    TestResultsFormComponent,
+    ResultsTableComponent,
+    BloodResultsTableComponent,
 
 
   ],

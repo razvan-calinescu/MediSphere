@@ -203,6 +203,8 @@ export class NewAppointmentComponent {
 
   changeOption(mode: string){
     this.formChoice = mode
+    if(this.formChoice == 'specialty')
+      this.appointment.doctorId = 'null';
   }
   
   

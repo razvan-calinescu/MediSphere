@@ -17,6 +17,11 @@ import { ListAccountsComponent } from './platform/platform_shared/list-accounts/
 import { CreateAccountComponent } from './platform/platform_shared/create-account/create-account.component';
 import { NewAppointmentComponent } from './informative/new-appointment/new-appointment.component';
 import { AppointmentsTableComponent } from './platform/platform_shared/appointments-table/appointments-table.component';
+import { AddDocumentComponent } from './platform/platform_shared/add-document/add-document.component';
+import { DocumentsTableComponent } from './platform/platform_shared/documents-table/documents-table.component';
+import { TestResultsFormComponent } from './platform/platform_shared/test-results-form/test-results-form.component';
+import { ResultsTableComponent } from './platform/platform_shared/results-table/results-table.component';
+import { BloodResultsTableComponent } from './platform/platform_shared/blood-results-table/blood-results-table.component';
 
 const routes: Routes = [
   {
@@ -86,6 +91,26 @@ const routes: Routes = [
   {
     path: 'listAppointments',
     component: AppointmentsTableComponent
+  },
+  {
+    path: 'createDocument/:docType',
+    component: AddDocumentComponent
+  },
+  {
+    path: 'listDocuments',
+    component: DocumentsTableComponent
+  },
+  {
+    path: 'addTestResults',
+    component: TestResultsFormComponent
+  },
+  {
+    path: 'listResults',
+    component: ResultsTableComponent
+  },
+  {
+    path: 'listResultsBlood',
+    component: BloodResultsTableComponent
   },
   {
     path: '**',

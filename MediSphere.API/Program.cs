@@ -29,6 +29,11 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
 builder.Services.AddScoped<IDoctorSpecialtyRepository, DoctorSpecialtyRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<IDocumentDataRepository, DocumentDataRepository>();
+builder.Services.AddScoped<ICovidTestResultRepository, CovidTestResultRepository>();
+builder.Services.AddScoped<IBloodTestResultRepository, BloodTestResultRepository>();
+
+
 
 
 // JWT Authentication
@@ -47,6 +52,9 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<UsersDetailsService>();
 builder.Services.AddScoped<DoctorSpecialtyService>();
 builder.Services.AddScoped<AppointmentService>();
+builder.Services.AddScoped<DocumentDataService>();
+builder.Services.AddScoped<CovidTestResultService>();
+builder.Services.AddScoped<BloodTestResultService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

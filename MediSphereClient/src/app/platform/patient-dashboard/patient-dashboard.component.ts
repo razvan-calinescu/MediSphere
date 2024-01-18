@@ -23,4 +23,18 @@ export class PatientDashboardComponent implements OnInit{
       this.router.navigateByUrl('unauthorised')
 
   }
+
+  toDocuments(): void{
+    this.router.navigateByUrl('listDocuments')
+  }
+
+  toResults(): void{
+    this.router.navigateByUrl('listResults')
+
+  }
+
+  toResultsBlood(): void{
+    this.router.navigateByUrl('listResultsBlood')
+
+  }
 }

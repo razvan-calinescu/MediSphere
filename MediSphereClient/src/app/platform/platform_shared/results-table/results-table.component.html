@@ -1,0 +1,99 @@
+<div class="tableContainer">
+
+    <div class="sectionTitle">
+        <h1>COVID Test Results</h1>
+        <p>The list below contains your COVID Test Results issued by our doctors</p>
+    </div>
+
+    <div class="tableCard">
+        <mat-card>
+            <mat-spinner *ngIf="!loadedData" color="warn" style="margin-top: 5em;"></mat-spinner>
+
+            <div class="upperArea" *ngIf="loadedData">
+                <div class="fieldsArea"  >
+                <mat-form-field appearance="outline" color="warn" style="width: 13.1em; margin-right:2em">
+                    <mat-label>Search</mat-label>
+                    <input matInput [formControl]="searchControl">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+
+
+            </div>
+
+            <mat-paginator #paginator [length]="totalRecords"
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 20]"
+            (page)="onPageChange($event)"
+            showFirstLastButtons
+            aria-label="Select page of appointments" color="warn" *ngIf="loadedData">
+</mat-paginator>
+
+            </div>
+
+            <div class="lowerArea" >
+                <div>
+                    <table mat-table [dataSource]="dataSource" *ngIf="loadedData">
+
+                      <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                      </ng-container>
+
+                      
+                      <ng-container matColumnDef="antigen">
+                        <th mat-header-cell *matHeaderCellDef> Antigen Test Result </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf="element.antigen=='0'">
+                            Not Tested
+                            </div>
+                            <div *ngIf="element.antigen=='1'" style="color: green">
+                                Negative
+                                </div>
+                                <div *ngIf="element.antigen=='2'" style="color: red">
+                                    Positive
+                                    </div>
+                        </td>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="pcr">
+                        <th mat-header-cell *matHeaderCellDef> PCR Test Result </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf="element.pcr=='0'">
+                            Not Tested
+                            </div>
+                            <div *ngIf="element.pcr=='1'" style="color: green">
+                                Negative
+                                </div>
+                                <div *ngIf="element.pcr=='2'" style="color: red">
+                                    Positive
+                                    </div>
+                        </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="issued">
+                        <th mat-header-cell *matHeaderCellDef> Issued </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dateTime}} </td>
+                      </ng-container>
+
+
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let element"> <mat-icon (click)="generatePdf(element)">download</mat-icon></td>
+                        </ng-container>
+  
+
+
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  
+                    
+                  </div>
+            </div>
+        </mat-card>
+
+    </div>
+
+
+</div>
